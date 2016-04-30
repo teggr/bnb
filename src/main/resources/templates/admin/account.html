@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:include="fragments/head::head (title='BNB')"></head>
+<body>
+
+	<div th:replace="fragments/header::header (location='home')"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h1>Your account settings</h1>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:include="fragments/scripts::scripts"></th:block>
+
+</body>
+</html>

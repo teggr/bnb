@@ -1,0 +1,12 @@
+package com.robintegg.bnb;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Bnb2Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Bnb2Application.class, args);
+	}
+}
