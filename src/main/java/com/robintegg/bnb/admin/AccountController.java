@@ -33,8 +33,8 @@ public class AccountController {
 		this.validator = validator;
 	}
 
-	@ModelAttribute
-	public AccountSettings getAccount() {
+	@ModelAttribute("settings")
+	public AccountSettings getSettings() {
 		return account.getSettings();
 	}
 
@@ -44,7 +44,7 @@ public class AccountController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String updateAccount(@ModelAttribute AccountSettingsUpdate update, BindingResult result) {
+	public String updateAccount(AccountSettingsUpdate update, BindingResult result) {
 
 		logger.info("updateAccount: {}", update);
 
