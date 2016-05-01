@@ -10,6 +10,14 @@
 		<div class="row">
 			<div class="col-md-12">
 				<h1>Your account settings</h1>
+				<form th:object="${account}" method="POST">
+				  <div class="form-group">
+				    <label for="emailAddress">Email address</label>
+				    <input type="email" name="emailAddress" id="emailAddress" th:value="*{emailAddress.emailAddress}" placeholder="Email"></input>
+				  </div>
+				  
+				  <button type="submit" class="btn btn-default">Update</button>
+				</form>
 			</div>
 		</div>
 	</div>
