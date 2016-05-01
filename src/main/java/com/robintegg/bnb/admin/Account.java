@@ -1,23 +1,24 @@
 package com.robintegg.bnb.admin;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import com.robintegg.bnb.core.EmailAddress;
-import com.robintegg.bnb.db.BaseEntity;
+@Component
+public class Account {
 
-@Entity
-public class Account extends BaseEntity {
+	private AccountRepository accountRepository;
 
-	@Embedded
-	EmailAddress emailAddress;
-
-	public EmailAddress getEmailAddress() {
-		return emailAddress;
+	@Autowired
+	public Account(AccountRepository accountRepository) {
+		this.accountRepository = accountRepository;
 	}
 
-	public static Account getInstance(AccountRepository repository) {
-		return repository.findAll().stream().findFirst().orElse(new Account());
+	public AccountSettings getSettings() {
+		return accountRepository.findAll().stream().findFirst().orElse(new AccountSettings());
+	}
+
+	public void setSettings(AccountSettings settings) {
+		accountRepository.save(settings);
 	}
 
 }
