@@ -10,7 +10,6 @@ import com.robintegg.bnb.admin.Account;
 import com.robintegg.bnb.admin.AccountSettings;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
 	private Account account;
@@ -25,7 +24,7 @@ public class HomeController {
 		return account.getSettings();
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/*", method = RequestMethod.GET)
 	public String getHome() {
 		return "home";
 	}
