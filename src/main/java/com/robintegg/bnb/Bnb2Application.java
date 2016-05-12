@@ -1,6 +1,7 @@
 package com.robintegg.bnb;
 
 import java.nio.charset.Charset;
+import java.util.Locale;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,9 +9,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.context.support.StaticMessageSource;
 
 import com.robintegg.bnb.utils.MessageSourceChain;
-import com.robintegg.bnb.utils.SiteMessageSource;
 
 @SpringBootApplication
 public class Bnb2Application {
@@ -21,12 +22,12 @@ public class Bnb2Application {
 	
 	@Primary
 	@Bean
-	public MessageSource messageSourceChain() {
-		return new MessageSourceChain(siteMessageSource(), messageSource());
+	public MessageSource messageSource() {
+		return new MessageSourceChain(staticMessageSource(), resourceBundleMessageSource());
 	}
 
 	@Bean
-	public MessageSource messageSource() {
+	public ResourceBundleMessageSource resourceBundleMessageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasenames("messages");
 		messageSource.setDefaultEncoding(Charset.forName("UTF-8").name());
@@ -36,8 +37,10 @@ public class Bnb2Application {
 	}
 
 	@Bean
-	public MessageSource siteMessageSource() {
-		return new SiteMessageSource();
+	public StaticMessageSource staticMessageSource() {
+		StaticMessageSource source = new StaticMessageSource();
+		source.addMessage("home", Locale.GERMAN, "vielen danke");
+		return source;
 	}
 
 }
