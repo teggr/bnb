@@ -8,6 +8,9 @@ import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.robintegg.bnb.locale.FixedCustomLocaleResolver;
+import com.robintegg.bnb.locale.LocaleUrlFilter;
+
 @Configuration
 public class WebConfig {
 
@@ -30,6 +33,11 @@ public class WebConfig {
 		FixedCustomLocaleResolver resolver = new FixedCustomLocaleResolver();
 		resolver.setDefaultLocale(Locale.GERMAN);
 		return resolver;
+	}
+
+	@Bean
+	public LocaleWatcher localeWatcher(FixedCustomLocaleResolver localeResolver) {
+		return new LocaleWatcher(localeResolver);
 	}
 
 }
