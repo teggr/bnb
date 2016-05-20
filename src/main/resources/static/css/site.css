@@ -1,0 +1,283 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-bottom: 40px;
+  color: #5a5a5a;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper > .container {
+  padding-right: 0;
+  padding-left: 0;
+}
+.navbar-wrapper .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.navbar-wrapper .navbar .container {
+  width: auto;
+}
+
+.navbar-brand {
+  font-family: 'Prata', serif;
+}
+
+.navbar-inverse {
+  background-color: #F4F4F4;
+  border-color: #D8D8D8;
+}
+
+.navbar-inverse .navbar-brand {
+  color: #747272;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+  color: #fff;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #747272;
+}
+
+.navbar-inverse .navbar-brand:focus, .navbar-inverse .navbar-brand:hover {
+  color: #222;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus, .navbar-inverse .navbar-nav>li>a:hover {
+  color: #222;
+}
+
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+  color: #222;
+  background-color: #DAD9D9;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+  color: #222;
+  background-color: #B2B2B2;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #222;
+}
+
+.navbar-inverse .navbar-toggle:focus, .navbar-inverse .navbar-toggle:hover {
+  background-color: #DAD9D9;
+}
+
+.navbar-inverse .navbar-nav>li.language-dropdown>a {
+    padding-left: 5px;
+  padding-right: 5px;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  min-height: 500px;
+  margin-right:auto;
+  margin-left:auto;
+  margin-bottom: 60px;
+
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing {
+  margin-top: 20px;
+}
+
+.marketing .col-sm-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-sm-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+/* SUITES CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.suites .col-sm-4 {
+  text-align: center;
+}
+.suites h2 {
+  font-weight: normal;
+}
+.suite-thumbnails {
+  margin-top: 60px;
+}
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 40px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.featurette-image {
+  margin-top: 60px;
+  margin-bottom: 30px;
+  max-width: 300px;
+  max-height: 300px;
+}
+
+.featurette-highlight {
+  background-color: #F7F7F7;
+}
+
+.featurette-form {
+  margin-top: 60px;
+  margin-bottom: 30px;
+}
+
+/* FOOTER
+-------------------------------------------------- */
+
+footer {
+  color: #F7F7F7;
+  background-color: #5A5A5A;
+}
+
+footer a {
+  color: #F7F7F7;
+
+}
+
+footer a:focus, footer a:hover {
+   color: #F7F7F7;
+  text-decoration: underline;
+}
+
+.footer-map {
+	margin-top: 10px;
+}
+
+.languages {
+  padding-left: 0px;
+}
+
+.languages>li {
+  list-style: none;
+}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+/* UPTO IPAD VERTICAL */
+@media (max-width: 991px) {
+.marketing .col-sm-4  {
+  text-align: left;
+}
+
+/* Carousel base class */
+.carousel {
+  min-height: 300px;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 350px;
+}
+.carousel-inner > .item > img {
+  height: 350px;
+}
+
+.carousel-caption h1 {
+  font-size: 30px;
+}
+
+}
+
+
+/* UPTO IPAD */
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #222;
+    background-color: transparent;
+  }
+
+}
+
+@media (min-width: 768px) {
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+
+  /* Bump up size of carousel content */
+  .carousel-caption p {
+    margin-bottom: 20px;
+    font-size: 21px;
+    line-height: 1.4;
+  }
+
+  .featurette-heading {
+    font-size: 50px;
+  }
+}
+
+@media (min-width: 992px) {
+  .featurette-heading {
+    margin-top: 60px;
+  }
+}

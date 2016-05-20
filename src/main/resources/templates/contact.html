@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head th:include="fragments/head::head"></head>
+
+  <body>
+  
+  <div th:replace="fragments/header::header (location='contact')"></div>
+
+
+<!-- Carousel
+    ================================================== -->
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="img/contact.jpg" alt="First slide"></img>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Get in touch</h1>
+              <p>We are here to help you have a great stay in the harz mountains</p>
+            </div>
+          </div>
+        </div>
+</div>
+    </div><!-- /.carousel -->
+
+   
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+	
+			
+	<?php if ( isset ( $_REQUEST['message_sent'] ) ) { ?>
+		<div class="alert alert-success" role="alert"><strong>Thanks for contacting us.</strong> You should receive a reply within 24 hours!</div>
+	<?php } ?>
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider"></hr>
+
+      <div class="row featurette featurette-highlight">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Need to talk. <span class="text-muted">Get in touch.</span></h2>
+          <h4>Location</h4>
+          <address>
+  <strong>Pension Moosholz</strong><br/>
+  Moosholzweg 4<br/>
+  D-38678<br/>
+  Deutschland<br/>
+</address>
+	 <address>
+  <abbr title="Telephone">T:</abbr> 01234 555555
+</address>
+<address>
+  <abbr title="Mobile">M:</abbr> 01234 666666
+</address>
+<address>
+  <abbr title="Email">E:</abbr> <a href="mailto:#">pension-moosholz@mail.de</a>
+</address>
+        </div>
+        <div class="col-md-5">
+         
+	<form class="form-horizontal featurette-form " method= "post" action="">
+	
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input name="email" type="email" class="form-control" id="inputEmail3" placeholder="Email"></input>
+    </div>
+  </div>
+
+<div class="form-group">
+    <label for="message3" class="col-sm-2 control-label">Message</label>
+    <div class="col-sm-10">
+<textarea name="message" id="message3" class="form-control" rows="8"   placeholder="Message"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default" name="buttonPressed">Send Message</button>
+    </div>
+  </div>
+</form>
+
+        </div>
+	</div>
+
+      <hr class="featurette-divider"></hr>
+
+      <div class="row featurette">
+        <div class="col-md-7 col-md-push-5">
+          <h2 class="featurette-heading">Travelling here. <span class="text-muted">Find Us.</span></h2>
+          <p class="lead">Best way to get here is via the mountain pass...</p>
+        </div>
+        <div class="col-md-5 col-md-pull-7">
+			<a target="blank" href="https://www.google.co.uk/maps/place/Moosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany/@51.7765777,10.3320373,15z/data=!4m7!1m4!3m3!1s0x47a53b794f1a9479:0x440af30bbcb240e9!2sMoosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany!3b1!3m1!1s0x47a53b794f1a9479:0x440af30bbcb240e9">
+			<img class="featurette-image img-responsive center-block" src="img/map.png" alt="Generic placeholder image"></img>
+			</a>
+        </div>
+      </div>
+
+      <hr class="featurette-divider"></hr>
+
+      <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+	<th:block th:include="fragments/footer::footer"></th:block>
+	<th:block th:include="fragments/scripts::scripts"></th:block>
+
+  </body>
+</html>

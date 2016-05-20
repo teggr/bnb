@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+	<head th:include="fragments/head::head"></head>
+
+  <body>
+  
+  <div th:replace="fragments/header::header (location='reservations')"></div>
+
+
+<!-- Carousel
+    ================================================== -->
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="img/reservations.jpg" alt="First slide"></img>
+          <div class="container">
+            <div class="carousel-caption">
+              <h1>Book into luxury</h1>
+              <p>Check out suite availability</p>
+            </div>
+          </div>
+        </div>
+</div>
+    </div><!-- /.carousel -->
+
+   
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing">
+
+      <!-- START THE FEATURETTES -->
+
+      <hr class="featurette-divider"></hr>
+
+      <div class="row featurette featurette-highlight">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Our prices. <span class="text-muted">Great value.</span></h2>
+          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+		<table class="table">
+			<tbody>
+			<tr>
+			 <td>Suite (inkl. Fruehstuck, alle Getraenke, MwSt und Kurtaxen)</td>
+			<td>pro Nacht</td>
+			<td>£135.00</td>
+			</tr>
+			<tr>
+			<td>Suite (inkl. Fruehstuck, Abendessen, alle Getraenke, MwSt und Kurtaxen)	</td>
+			<td>pro Nacht	</td>
+			<td>£165,00</td>
+			</tr>
+			<tr>
+			<td>Abendessen</td>
+			<td>pro Person</td>
+			<td>£20,00</td>
+			</tr>
+			<tr>
+			<td>Picnic Hamper</td>
+			<td>pro Person</td>
+			<td>£15,00</td>
+			</tr>
+			<tr>
+			<td>Tiere (max 2)</td>
+			<td>pro Nacht/Tier</td>
+			<td>£7,50</td>
+			</tr>
+			<tr>
+			<td>Endreinigung (weniger als 3 Tage)</td>
+			<td>einmalig</td>
+			<td>£30,00</td>
+			</tr>
+			</tbody>
+		</table>
+        </div>
+        <div class="col-md-5">
+          <img class="featurette-image img-responsive center-block" src="img/feature-1.jpg" alt="Generic placeholder image"></img>
+        </div>
+      </div>
+
+      <hr class="featurette-divider" />
+
+      <div class="featurette">
+
+          <h2 class="featurette-heading">Availability. <span class="text-muted">Bookings.</span></h2>
+          <p class="lead">Check availability in the calendar. We have 3 suites only. If a suite has been booked then a dot appears in the calendar. Three dots would indicate that we are fully booked.</p>
+
+          <iframe src="https://www.google.com/calendar/embed?title=Availability&amp;height=250&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=tegg.me.uk_47g6op9benpnhf0pk74dm85468%40group.calendar.google.com&amp;color=%235F6B02&amp;src=tegg.me.uk_fvfm3bsr0nufkf2ek8o2aia5u4%40group.calendar.google.com&amp;color=%232F6309&amp;src=tegg.me.uk_3ojbu4gqib9gmuufm79v7qaf1g%40group.calendar.google.com&amp;color=%23691426&amp;ctz=Europe%2FBerlin" style=" border-width:0 " width="600" height="600" frameborder="0" scrolling="no"></iframe>
+
+      </div>
+
+      <hr class="featurette-divider" />
+
+      <div class="row featurette featurette-highlight">
+        <div class="col-md-7">
+          <h2 class="featurette-heading">Want to make you stay a little more special. <span class="text-muted">Email us.</span></h2>
+          <p class="lead">Use the email form to send us an enquiry or to make a booking.</p>
+        </div>
+        <div class="col-md-5">
+          
+		<form class="form-horizontal featurette-form ">
+  <div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3" placeholder="Email"></input>
+    </div>
+  </div>
+
+ <div class="form-group">
+    <label for="name3" class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="name3" placeholder="Name"></input>
+    </div>
+  </div>
+
+
+<div class="form-group">
+    <label for="message3" class="col-sm-2 control-label">Message</label>
+    <div class="col-sm-10">
+<textarea id="message3" class="form-control" rows="8"   placeholder="Message"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+        </div>
+      </div>
+
+      <hr class="featurette-divider" />
+
+      <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+	<th:block th:include="fragments/footer::footer"></th:block>
+	<th:block th:include="fragments/scripts::scripts"></th:block>
+
+  </body>
+</html>

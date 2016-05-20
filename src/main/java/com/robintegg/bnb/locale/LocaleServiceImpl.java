@@ -2,6 +2,7 @@ package com.robintegg.bnb.locale;
 
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -23,17 +24,20 @@ public class LocaleServiceImpl implements LocaleService {
 
 		// does it need to be a registered locale. probably ...
 
-		ContentLocale currentDefault = localeRepository.findByDefaultLocale(true);
-		if (currentDefault != null) {
-			currentDefault.setDefaultLocale(false);
+		Optional<ContentLocale> currentDefault = localeRepository.findByDefaultLocale(true);
+		if (currentDefault.isPresent()) {
+			currentDefault.get().setDefaultLocale(false);
 		}
 
-		ContentLocale targetLocale = localeRepository.findByLocale(locale);
-		if (targetLocale != null) {
-			targetLocale.setDefaultLocale(true);
+		Optional<ContentLocale> targetLocale = localeRepository.findByLocale(locale);
+		if (targetLocale.isPresent()) {
+			ContentLocale contentLocale = targetLocale.get();
+			contentLocale.setDefaultLocale(true);
+			domainEventPublisher.publishEvent(new DefaultLocaleChangeEvent(this, contentLocale));
 		}
+		
+		// what if that locale wasn't there?
 
-		domainEventPublisher.publishEvent(new DefaultLocaleChangeEvent(this, targetLocale));
 
 	}
 
