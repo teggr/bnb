@@ -39,7 +39,17 @@ public class Bnb2Application {
 	@Bean
 	public StaticMessageSource staticMessageSource() {
 		StaticMessageSource source = new StaticMessageSource();
-		source.addMessage("home", Locale.GERMAN, "vielen danke");
+		
+		source.addMessage("home.nav", Locale.GERMAN, "vielen danke");
+		source.addMessage("suites.nav", Locale.GERMAN, "suiten");
+		source.addMessage("reservations.nav", Locale.GERMAN, "reserviet");
+		source.addMessage("contact.nav", Locale.GERMAN, "contacten");
+		
+		source.addMessage("home.nav", Locale.ENGLISH, "home");
+		source.addMessage("suites.nav", Locale.ENGLISH, "Suites");
+		source.addMessage("reservations.nav", Locale.ENGLISH, "Reservations");
+		source.addMessage("contact.nav", Locale.ENGLISH, "Contact Us");
+		
 		return source;
 	}
 
