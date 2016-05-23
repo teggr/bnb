@@ -5,9 +5,11 @@ import java.util.Locale;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.robintegg.bnb.core.DomainEventPublisher;
 
+@Service
 public class LocaleServiceImpl implements LocaleService {
 
 	private ContentLocaleRepository localeRepository;
@@ -35,10 +37,14 @@ public class LocaleServiceImpl implements LocaleService {
 			contentLocale.setDefaultLocale(true);
 			domainEventPublisher.publishEvent(new DefaultLocaleChangeEvent(this, contentLocale));
 		}
-		
+
 		// what if that locale wasn't there?
 
+	}
 
+	@Override
+	public Locale getDefaultLocale() {
+		return localeRepository.findByDefaultLocale(true).orElse(new ContentLocale(Locale.GERMAN)).getLocale();
 	}
 
 	@Override

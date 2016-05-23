@@ -26,6 +26,30 @@ public class Lodging {
 	private GoogleMap map;
 	
 	Lodging() {}
+	
+	public Address getAddress() {
+		return address;
+	}
+	
+	public EmailAddress getEmail() {
+		return email;
+	}
+	
+	public PhoneNumber getLandline() {
+		return landline;
+	}
+	
+	public GoogleMap getMap() {
+		return map;
+	}
+	
+	public PhoneNumber getMobile() {
+		return mobile;
+	}
+	
+	public LodgingName getName() {
+		return name;
+	}
 
 	@Override
 	public String toString() {

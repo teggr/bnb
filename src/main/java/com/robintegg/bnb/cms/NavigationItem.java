@@ -3,16 +3,22 @@ package com.robintegg.bnb.cms;
 public class NavigationItem {
 
 	private boolean active;
-	private Page page;
+	private String path;
+	private String text;
 
-	public NavigationItem(Page page, boolean active) {
+	public NavigationItem(String path, String text, boolean active) {
 		super();
-		this.page = page;
+		this.path = path;
+		this.text = text;
 		this.active = active;
 	}
 
-	public String getPage() {
-		return page.getName();
+	public String getPath() {
+		return path;
+	}
+
+	public String getText() {
+		return text;
 	}
 
 	public boolean isActive() {

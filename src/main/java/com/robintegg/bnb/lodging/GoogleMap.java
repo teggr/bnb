@@ -17,6 +17,14 @@ public class GoogleMap {
 
 	private String url;
 	private String image;
+	
+	public String getImage() {
+		return image;
+	}
+	
+	public String getUrl() {
+		return url;
+	}
 
 	@Override
 	public String toString() {

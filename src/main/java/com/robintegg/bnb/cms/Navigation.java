@@ -2,28 +2,39 @@ package com.robintegg.bnb.cms;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class Navigation {
 
-	private Page activePage;
-	private PageRepository pages;
-
-	public Navigation(PageRepository pages, Page activePage) {
-		this.pages = pages;
-		this.activePage = activePage;
-	}
-
-	public List<NavigationItem> getItems() {
-		ArrayList<NavigationItem> list = new ArrayList<>();
+	public static Navigation newInstance(PageRepository pages, Locale defaultLocale, Locale locale) {
+		ArrayList<NavigationItem> items = new ArrayList<>();
 		List<Page> allPages = pages.findAll();
 		for (Page page : allPages) {
 			if (!page.isHome()) {
-				NavigationItem item = new NavigationItem(page, false);
-				list.add(item);
+				String pageName = page.getName(locale);
+				NavigationItem item = new NavigationItem(resolvePath(pageName, defaultLocale, locale), pageName, false);
+				items.add(item);
 			}
 		}
+		return new Navigation(items);
+	}
 
-		return list;
+	private static String resolvePath(String name, Locale defaultLocale, Locale locale) {
+		String path = "/" + name;
+		if (!defaultLocale.equals(locale)) {
+			path = "/" + locale.getLanguage() + path;
+		}
+		return path;
+	}
+
+	private List<NavigationItem> items;
+
+	Navigation(List<NavigationItem> items) {
+		this.items = items;
+	}
+
+	public List<NavigationItem> getItems() {
+		return items;
 	}
 
 }

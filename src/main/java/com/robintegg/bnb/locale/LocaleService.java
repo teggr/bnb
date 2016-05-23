@@ -10,5 +10,7 @@ public interface LocaleService {
 	Collection<ContentLocale> getRegisteredLocales();
 	
 	void registerLocale(Locale locale, boolean makeDefault);
+
+	Locale getDefaultLocale();
 	
 }

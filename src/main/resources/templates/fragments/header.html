@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 
-<body th:fragment="header (location)">
+<body th:fragment="header">
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
@@ -23,11 +23,8 @@
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					
-					<li th:each="item : ${navigation.items}" th:classappend="${item.active}? 'active'"><a th:href="@{${item.page}}" th:text="#{${item.page + '.nav'}}"></a></li>
+					<li th:each="item : ${navigation.items}" th:classappend="${item.active}? 'active'"><a th:href="@{${item.path}}" th:text="${item.text}"></a></li>
 					
-					<li th:classappend="${'admin'.equals(location)}? 'active'"><a th:href="@{/admin}"><span>Admin</span></a></li>
-					<li th:if="${#httpServletRequest.remoteUser}"><form class="navbar-form" th:action="@{/logout}" method="post"><input class="btn btn-link nav-link" type="submit" value="Sign Out"/></form> </li>
-
 				</ul>
 				
 				

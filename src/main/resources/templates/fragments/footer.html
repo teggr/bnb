@@ -20,14 +20,13 @@
 
 				<div class="col-md-3">
 					<h4>Location</h4>
-					<a target="blank"
-						href="https://www.google.co.uk/maps/place/Moosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany/@51.7765777,10.3320373,15z/data=!4m7!1m4!3m3!1s0x47a53b794f1a9479:0x440af30bbcb240e9!2sMoosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany!3b1!3m1!1s0x47a53b794f1a9479:0x440af30bbcb240e9">
+					<a target="blank" th:href="${lodging.map?.url}">
 						<address>
-							<strong th:text="${settings.address?.addressLine1}"></strong><br />
-							<span th:text="${settings.address?.addressLine2}"></span> <br />
-							<span th:text="${settings.address?.addressLine3}"></span> <br />
-							<span th:text="${settings.address?.addressLine4}"></span> <br />
-							<span th:text="${settings.address?.addressLine5}"></span> <br />
+							<strong th:text="${lodging.address?.addressLine1}"></strong><br />
+							<span th:text="${lodging.address?.addressLine2}"></span> <br />
+							<span th:text="${lodging.address?.addressLine3}"></span> <br />
+							<span th:text="${lodging.address?.addressLine4}"></span> <br />
+							<span th:text="${lodging.address?.addressLine5}"></span> <br />
 							<img class="img-responsive footer-map" src="img/map-small.png" alt="Generic placeholder image"></img>
 						</address>
 					</a>
@@ -37,13 +36,13 @@
 				<div class="col-md-3">
 					<h4>Contact Us</h4>
 					<address>
-						<abbr title="Telephone">T:</abbr> <span th:text="${settings.telephoneNumber?.number}"></span>
+						<abbr title="Telephone">T:</abbr> <span th:text="${lodging.landline?.number}"></span>
 					</address>
 					<address>
-						<abbr title="Mobile">M:</abbr> <span th:text="${settings.mobileNumber?.number}"></span>
+						<abbr title="Mobile">M:</abbr> <span th:text="${lodging.mobile?.number}"></span>
 					</address>
 					<address>
-						<abbr title="Email">E:</abbr> <a href="mailto:#" th:text="${settings.emailAddress?.emailAddress}"></a>
+						<abbr title="Email">E:</abbr> <a href="mailto:#" th:text="${lodging.email?.address}"></a>
 					</address>
 				</div>
 				<!-- /.col-lg-4 -->
@@ -62,7 +61,7 @@
 					<h4>Languages</h4>
 					<ul class="languages">
 						<li><img width="12px" height="12px" src="img/german.png"></img>
-							<a th:href="@{/de}">Deutsche</a></li>
+							<a th:href="@{/}">Deutsche</a></li>
 						<li><img width="12px" height="12px" src="img/british.png"></img>
 							<a th:href="@{/en}">English</a></li>
 					</ul>

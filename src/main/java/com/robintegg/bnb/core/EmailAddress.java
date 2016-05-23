@@ -5,21 +5,24 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EmailAddress {
 
-	public static EmailAddress newInstance(String emailAddress) {
-		EmailAddress address = new EmailAddress();
-		address.emailAddress = emailAddress;
-		return address;
+	public static EmailAddress newInstance(String address) {
+		EmailAddress emailAddress = new EmailAddress();
+		emailAddress.address = address;
+		return emailAddress;
 	}
 
-	String emailAddress;
+	private String address;
 
-	public String getEmailAddress() {
-		return emailAddress;
+	EmailAddress() {
+	}
+
+	public String getAddress() {
+		return address;
 	}
 
 	@Override
 	public String toString() {
-		return "EmailAddress [emailAddress=" + emailAddress + "]";
+		return "EmailAddress [address=" + address + "]";
 	}
 
 }

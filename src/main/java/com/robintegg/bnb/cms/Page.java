@@ -1,5 +1,7 @@
 package com.robintegg.bnb.cms;
 
+import java.util.Locale;
+
 public class Page {
 
 	private String name;
@@ -16,7 +18,7 @@ public class Page {
 		return home;
 	}
 
-	public String getName() {
+	public String getName(Locale locale) {
 		return name;
 	}
 
