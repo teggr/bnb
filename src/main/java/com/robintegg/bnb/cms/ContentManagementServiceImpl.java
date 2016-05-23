@@ -2,8 +2,6 @@ package com.robintegg.bnb.cms;
 
 import java.util.Locale;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -13,7 +11,6 @@ import com.robintegg.bnb.locale.LocaleService;
 import com.robintegg.bnb.lodging.SingleLodgingService;
 
 @Service
-@Transactional
 public class ContentManagementServiceImpl implements ContentManagementService {
 
 	private SingleLodgingService singleLodgingService;

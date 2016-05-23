@@ -1,10 +1,7 @@
 package com.robintegg.bnb.lodging;
 
-import javax.persistence.Embeddable;
-
 import org.apache.commons.lang3.StringUtils;
 
-@Embeddable
 public class LodgingName {
 
 	public static LodgingName newInstance(String name) {

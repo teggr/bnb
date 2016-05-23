@@ -1,10 +1,8 @@
 package com.robintegg.bnb.core;
 
-import javax.persistence.Embeddable;
-
 import org.apache.commons.lang3.StringUtils;
 
-@Embeddable
+//@Embeddable
 public class PhoneNumber {
 
 	public static PhoneNumber newInstance(String number) {

@@ -2,11 +2,8 @@ package com.robintegg.bnb.locale;
 
 import java.util.Locale;
 
-import javax.persistence.Entity;
-
 import com.robintegg.bnb.db.BaseEntity;
 
-@Entity
 public class ContentLocale extends BaseEntity {
 
 	private Locale locale;

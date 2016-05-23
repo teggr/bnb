@@ -1,8 +1,6 @@
 package com.robintegg.bnb.core;
 
-import javax.persistence.Embeddable;
-
-@Embeddable
+//@Embeddable
 public class Address {
 
 	public static Address newInstance(String addressLine1, String addressLine2, String addressLine3,
