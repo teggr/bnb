@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.robintegg.bnb.admin.Account;
+import com.robintegg.bnb.admin.AccountService;
 import com.robintegg.bnb.admin.AccountSettings;
 import com.robintegg.bnb.cms.Navigation;
 import com.robintegg.bnb.cms.Page;
@@ -17,18 +17,18 @@ import com.robintegg.bnb.cms.PageRepository;
 @Controller
 public class HomeController {
 
-	private Account account;
+	private AccountService account;
 	private PageRepository pages;
 
 	@Autowired
-	public HomeController(Account account, PageRepository pages) {
+	public HomeController(AccountService account, PageRepository pages) {
 		this.account = account;
 		this.pages = pages;
 	}
 
 	@ModelAttribute("settings")
 	public AccountSettings getSettings() {
-		return account.getSettings();
+		return account.getAccount();
 	}
 
 	@ModelAttribute("navigation")
