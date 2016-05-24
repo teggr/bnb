@@ -14,6 +14,7 @@ public class PageRepository {
 
 	public PageRepository() {
 		addPage("home",true);
+		addPage("harz",false);
 		addPage("suites",false);
 		addPage("reservations",false);
 		addPage("contact",false);
