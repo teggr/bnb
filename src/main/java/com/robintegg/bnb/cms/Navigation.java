@@ -11,20 +11,20 @@ public class Navigation {
 		List<Page> allPages = pages.findAll();
 		for (Page page : allPages) {
 			if (!page.isHome()) {
-				String pageName = page.getName(locale);
-				NavigationItem item = new NavigationItem(resolvePath(pageName, defaultLocale, locale), pageName, false);
+				String pageName = page.getTitle().getText();
+				NavigationItem item = new NavigationItem(resolveSlug(page.getTitle().getSlug(), defaultLocale, locale),
+						pageName, false);
 				items.add(item);
 			}
 		}
 		return new Navigation(items);
 	}
 
-	private static String resolvePath(String name, Locale defaultLocale, Locale locale) {
-		String path = "/" + name;
+	private static String resolveSlug(String slug, Locale defaultLocale, Locale locale) {
 		if (!defaultLocale.equals(locale)) {
-			path = "/" + locale.getLanguage() + path;
+			slug = "/" + locale.getLanguage() + slug;
 		}
-		return path;
+		return slug;
 	}
 
 	private List<NavigationItem> items;

@@ -11,7 +11,7 @@ public class PageThumbnail {
 
 	public PageThumbnail(Page p, Locale locale) {
 		id = p.getId();
-		name = p.getName(locale);
+		name = p.getTitle().getText();
 	}
 
 	public Long getId() {
