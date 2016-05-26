@@ -9,28 +9,58 @@
 	
 		<div class="row">
 		
-			<div class="col-md-2">
-				<h2>Field</h2>
-			</div>
-			<div class="col-md-5">
-				<h2>English</h2>
-			</div>
-			<div class="col-md-5">
-				<h2>German</h2>
+			<div class="col-md-12">
+			
+				<h1 th:text="${editor.page.title.text}"></h1>
+				<p th:text="${editor.page.title.slug}"></p>
+			
 			</div>
 		
 		</div>
 
 		<div class="row" th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
 		
-			<div class="col-md-2">
-				image title
-			</div>
-			<div class="col-md-5">
-				<input type="text"></input>
-			</div>
-			<div class="col-md-5">
-				<input type="text"></input>
+			<div class="col-md-12">
+				
+				<h1 th:text="${section.title}"></h1>
+				
+				<div class="row-fluid" th:each="article : ${section.articles}">
+				
+					<h2 th:text="${article.name}"></h2>
+		
+					<div class="col-md-12">
+						
+						<div class="row-fluid" th:each="field : ${article.fields}">
+				
+							<div class="col-xs-12">
+							
+								<div class="form-group">
+									<label th:text="${field.name}"></label>
+								<!-- based on type, show diff form inputs here -->
+									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
+										<input type="file"></input>
+									</th:block>
+									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
+										<input type="text"></input>
+									</th:block>
+									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).SUBTITLE}">
+										<input type="text"></input>
+									</th:block>
+									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TEXT}">
+										<textarea rows="3" cols="80"></textarea>
+									</th:block>
+								
+								</div>
+							
+							</div>
+						
+						</div>
+					
+						
+					</div>
+				
+				</div>
+				
 			</div>
 		
 		</div>

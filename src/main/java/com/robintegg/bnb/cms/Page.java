@@ -1,7 +1,5 @@
 package com.robintegg.bnb.cms;
 
-import java.util.Locale;
-
 import com.robintegg.bnb.core.Title;
 import com.robintegg.bnb.db.BaseEntity;
 
