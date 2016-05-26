@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/fragments/head::head"></head>
+<body>
+
+	<th:block th:include="admin/fragments/header::header (location='pages')"></th:block>
+
+	<div class="container">
+	
+		<div class="row">
+		
+			<div class="col-md-2">
+				<h2>Field</h2>
+			</div>
+			<div class="col-md-5">
+				<h2>English</h2>
+			</div>
+			<div class="col-md-5">
+				<h2>German</h2>
+			</div>
+		
+		</div>
+
+		<div class="row">
+		
+			<div class="col-md-2">
+				image title
+			</div>
+			<div class="col-md-5">
+				<input type="text"></input>
+			</div>
+			<div class="col-md-5">
+				<input type="text"></input>
+			</div>
+		
+		</div>
+	
+	</div>
+
+	<th:block th:include="admin/fragments/scripts::scripts"></th:block>
+
+</body>
+</html>

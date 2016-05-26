@@ -119,4 +119,8 @@ public class PageTemplateRepository {
 		templates.put(pageTemplate.getTemplate(), pageTemplate);
 	}
 
+	public PageTemplate findByName(String template) {
+		return templates.get(template);
+	}
+
 }

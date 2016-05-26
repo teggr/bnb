@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<body th:fragment="footer">
+
+	<div class="container">
+		<div class="row">
+			<p class="pull-right">
+				<a href="#">Back to top</a>
+			</p>
+		</div>
+	</div>
+
+	<footer>
+		<div class="container footer">
+
+			<!-- Three columns of text below the carousel -->
+			<div class="row">
+
+				<div class="col-md-3">
+					<h4>Location</h4>
+					<a target="blank" th:href="${lodging.map?.url}">
+						<address>
+							<strong th:text="${lodging.address?.addressLine1}"></strong><br />
+							<span th:text="${lodging.address?.addressLine2}"></span> <br />
+							<span th:text="${lodging.address?.addressLine3}"></span> <br />
+							<span th:text="${lodging.address?.addressLine4}"></span> <br />
+							<span th:text="${lodging.address?.addressLine5}"></span> <br />
+							<img class="img-responsive footer-map" src="img/map-small.png" alt="Generic placeholder image"></img>
+						</address>
+					</a>
+				</div>
+				<!-- /.col-lg-3 -->
+
+				<div class="col-md-3">
+					<h4>Contact Us</h4>
+					<address>
+						<abbr title="Telephone">T:</abbr> <span th:text="${lodging.landline?.number}"></span>
+					</address>
+					<address>
+						<abbr title="Mobile">M:</abbr> <span th:text="${lodging.mobile?.number}"></span>
+					</address>
+					<address>
+						<abbr title="Email">E:</abbr> <a href="mailto:#" th:text="${lodging.email?.address}"></a>
+					</address>
+				</div>
+				<!-- /.col-lg-4 -->
+
+				<div class="col-md-3">
+					<h4>Social Network</h4>
+					<ul>
+						<li>Facebook</li>
+						<li>Twitter</li>
+						<li>Tripadvisor</li>
+					</ul>
+
+				</div>
+				<!-- /.col-lg-4 -->
+				<div class="col-md-3">
+					<h4>Languages</h4>
+					<ul class="languages">
+						<li><img width="12px" height="12px" src="img/german.png"></img>
+							<a th:href="@{/}">Deutsche</a></li>
+						<li><img width="12px" height="12px" src="img/british.png"></img>
+							<a th:href="@{/en}">English</a></li>
+					</ul>
+					<h4>Copyright</h4>
+					<p>
+						&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a>
+						&middot; <a href="#">Terms</a>
+					</p>
+				</div>
+				<!-- /.col-lg-4 -->
+			</div>
+			<!-- /.row -->
+
+		</div>
+	</footer>
+
+</body>
+
+</html>
