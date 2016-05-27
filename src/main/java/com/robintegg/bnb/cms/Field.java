@@ -1,16 +1,17 @@
 package com.robintegg.bnb.cms;
 
-public class Field {
+import java.util.stream.Collectors;
+
+public class Field extends AbstractContentNode {
 
 	public enum Type {
 		IMAGE, TITLE, TEXT, SUBTITLE;
 	}
 
 	private Type type;
-	private String name;
 
 	public Field(String name, Type type) {
-		this.name = name;
+		super(name);
 		this.type = type;
 	}
 
@@ -18,8 +19,8 @@ public class Field {
 		return type;
 	}
 
-	public String getName() {
-		return name;
+	public String getFieldName() {
+		return getPath().stream().collect(Collectors.joining("_"));
 	}
 
 }

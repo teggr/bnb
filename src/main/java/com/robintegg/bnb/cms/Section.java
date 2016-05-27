@@ -1,9 +1,10 @@
 package com.robintegg.bnb.cms;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-public class Section {
+public class Section extends AbstractContentNode {
 
 	public static class Builder {
 
@@ -25,19 +26,25 @@ public class Section {
 
 	}
 
-	private String title;
-	private List<Article> articles;
+	private List<Article> articles = new ArrayList<>();
 
 	public Section(Builder builder) {
-		this.title = builder.sectionTitle;
-		this.articles = builder.articles;
+		super(builder.sectionTitle);
+		for (Article article : builder.articles) {
+			addArticle(article);
+		}
+	}
+
+	private void addArticle(Article article) {
+		this.articles.add(article);
+		article.setParent(this);
 	}
 
 	public String getTitle() {
-		return title;
+		return getName();
 	}
 
-	public List<Article> getArticles() {
+	public Collection<Article> getArticles() {
 		return articles;
 	}
 

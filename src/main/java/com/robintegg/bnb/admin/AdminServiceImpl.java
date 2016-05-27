@@ -21,7 +21,8 @@ public class AdminServiceImpl implements AdminService {
 	private PageTemplateRepository pageTemplateRepository;
 
 	@Autowired
-	public AdminServiceImpl(PageRepository pageRepository, LocaleService localeService, PageTemplateRepository pageTemplateRepository) {
+	public AdminServiceImpl(PageRepository pageRepository, LocaleService localeService,
+			PageTemplateRepository pageTemplateRepository) {
 		this.pageRepository = pageRepository;
 		this.localeService = localeService;
 		this.pageTemplateRepository = pageTemplateRepository;
@@ -32,18 +33,27 @@ public class AdminServiceImpl implements AdminService {
 		return pageRepository.findAll().stream().map(p -> new PageThumbnail(p, localeService.getDefaultLocale()))
 				.collect(Collectors.toList());
 	}
-	
+
 	@Override
 	public PageEditor getPageEditor(Long id) {
-		
+
 		Page page = pageRepository.findOne(id);
-		
+
 		String template = page.getTemplate();
-		
+
 		PageTemplate pageTemplate = pageTemplateRepository.findByName(template);
-		
-		return new PageEditor( page, pageTemplate );
-		
+
+		listFields(pageTemplate);
+
+		return new PageEditor(page, pageTemplate);
+
+	}
+
+	private void listFields(PageTemplate pageTemplate) {
+
+		pageTemplate.getContentTemplate().getSections().stream().flatMap(s -> s.getArticles().stream())
+				.flatMap(a -> a.getFields().stream()).forEach(f -> System.out.println(f.getFieldName()));
+
 	}
 
 }

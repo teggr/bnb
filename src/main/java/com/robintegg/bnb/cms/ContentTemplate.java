@@ -1,6 +1,7 @@
 package com.robintegg.bnb.cms;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ContentTemplate {
@@ -26,7 +27,7 @@ public class ContentTemplate {
 		sections = builder.sections;
 	}
 
-	public List<Section> getSections() {
+	public Collection<Section> getSections() {
 		return sections;
 	}
 
