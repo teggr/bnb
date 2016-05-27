@@ -53,6 +53,10 @@
 									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
 										<p>/moosholz/nameoftheimage</p>
 										<a th:href="@{/admin/images}" class="btn btn-default" target="_blank">Open image upload tab</a>
+										
+										<div class="upload_form"></div>
+										<input id="myvalue" type="hidden" name="myvalue" value=""></input>
+										
 									</th:block>
 									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
 										<input type="text"></input>
@@ -82,6 +86,26 @@
 	</div>
 
 	<th:block th:include="admin/fragments/scripts::scripts"></th:block>
+	<th:block th:include="admin/fragments/scripts::cloudinary"></th:block>
+	
+	<script type="text/javascript">
+	
+		$(function(){
+			
+			var inputTag = $.cloudinary.unsigned_upload_tag("ri7mo9sg", { cloud_name: 'dmm5h0tbd' });
+			
+			$('.upload_form').append(inputTag);
+			
+			$(inputTag)
+				.bind('cloudinarydone', function(e, data) {
+					console.log( data.result.public_id );
+					
+					$("#myvalue").val( data.result.public_id );
+					
+				});			
+		});
+	
+	</script>
 
 </body>
 </html>
