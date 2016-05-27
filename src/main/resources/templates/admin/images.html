@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/fragments/head::head"></head>
+<body>
+
+	<th:block th:include="admin/fragments/header::header (location='images')"></th:block>
+
+	<div class="container">
+
+		<div class="row">
+		
+			<div class="col-md-12">
+		
+				<a href="#" id="upload_widget_opener" class="btn btn-primary">Upload multiple images</a>
+				
+				<a href="#" id="close_tab" class="btn btn-warning">Close tab</a>
+
+				<script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+				          
+				<script type="text/javascript">  
+				  document.getElementById("upload_widget_opener").addEventListener("click", function() {				
+				    	cloudinary.openUploadWidget({ cloud_name: 'dmm5h0tbd', upload_preset: 'ri7mo9sg', theme: 'white' }, 
+				      		function(error, result) { console.log(error, result) });
+				  }, false);				  
+				  document.getElementById("close_tab").addEventListener("click", function() {
+				   	window.close();				
+				  }, false);
+				</script>
+				
+			</div>
+		
+		</div>
+	
+	</div>
+
+	<th:block th:include="admin/fragments/scripts::scripts"></th:block>
+
+</body>
+</html>

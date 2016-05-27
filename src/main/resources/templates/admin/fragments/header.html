@@ -24,6 +24,7 @@
 					<ul class="nav navbar-nav">
 						
 						<li th:classappend="${'pages'.equals(location)}? 'active'"><a th:href="@{/admin/pages}">Pages</a></li>
+						<li th:classappend="${'images'.equals(location)}? 'active'"><a th:href="@{/admin/images}">Images</a></li>
 						<li ><a th:href="@{/}">Back to site</a></li>
 						<!-- <li th:each="item : ${navigation.items}" th:classappend="${item.active}? 'active'"><a th:href="@{${item.path}}" th:text="${item.text}"></a></li> -->
 						

@@ -27,6 +27,17 @@ public class AdminController {
 	public String getAdmin() {
 		return "redirect:/admin/pages";
 	}
+	
+	@RequestMapping(path = "/images", method = RequestMethod.GET)
+	public String getImagesAdmin(ModelMap model) {
+
+		List<PageThumbnail> listOfPages = adminService.getPageThumbnails();
+
+		model.addAttribute("pages", listOfPages);
+
+		return "admin/images";
+
+	}
 
 	@RequestMapping(path = "/pages", method = RequestMethod.GET)
 	public String getPagesAdmin(ModelMap model) {

@@ -6,6 +6,19 @@
 	<th:block th:include="admin/fragments/header::header (location='pages')"></th:block>
 
 	<div class="container">
+		
+		<div class="row">
+		
+			<div class="col-md-12">
+			
+				<form th:action="@{/admin/pages/{id}(id=${editor.page.id})}" method="post">
+					<button type="submit" name="action" value="save" class="btn btn-primary">Save</button>
+					<button type="submit" name="action" value="exit" class="btn btn-warning">Exit, don't save</button>
+				</form>
+			
+			</div>
+		
+		</div>
 	
 		<div class="row">
 		
@@ -38,7 +51,8 @@
 									<label th:text="${field.name}"></label>
 								<!-- based on type, show diff form inputs here -->
 									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
-										<input type="file"></input>
+										<p>/moosholz/nameoftheimage</p>
+										<a th:href="@{/admin/images}" class="btn btn-default" target="_blank">Open image upload tab</a>
 									</th:block>
 									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
 										<input type="text"></input>
