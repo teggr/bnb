@@ -6,124 +6,134 @@
 	<th:block th:include="admin/fragments/header::header (location='pages')"></th:block>
 
 	<div class="container">
-		
-		<div class="row">
-		
-			<div class="col-md-12">
-			
-				<form th:action="@{/admin/pages/{id}(id=${editor.page.id})}" method="post">
-					<button type="submit" name="action" value="save" class="btn btn-primary">Save</button>
-					<button type="submit" name="action" value="exit" class="btn btn-warning">Exit, don't save</button>
-				</form>
-			
-			</div>
-		
-		</div>
 	
-		<div class="row">
-		
-			<div class="col-md-12">
+		<form th:action="@{/admin/pages/{id}(id=${editor.page.id})}" method="post">
+						
+			<div class="row">
 			
-				<h1 th:text="${editor.page.title.text}"></h1>
-				<p th:text="${editor.page.title.slug}"></p>
+				<div class="col-md-12">
+					<button type="submit" class="btn btn-primary">Save</button>
+					<a class="btn btn-warning" th:href="@{/admin/pages}">Exit, don't save</a>
+				</div>
 			
 			</div>
 		
-		</div>
-
-		<div class="row" th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
-		
-			<div class="col-md-12">
+			<div class="row">
+			
+				<div class="col-md-12">
 				
-				<h1 th:text="${section.title}"></h1>
+					<h1 th:text="${editor.page.title.text}"></h1>
+					<p th:text="${editor.page.title.slug}"></p>
 				
-				<div class="row-fluid" th:each="article : ${section.articles}">
-				
-					<h2 th:text="${article.name}"></h2>
-		
-					<div class="col-md-12">
-						
-						<div class="row-fluid" th:each="field : ${article.fields}">
-				
-							<div class="col-xs-12">
+				</div>
+			
+			</div>
+	
+			<div class="row" th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
+			
+				<div class="col-md-12">
+					
+					<h1 th:text="${section.title}"></h1>
+					
+					<div class="row-fluid" th:each="article : ${section.articles}">
+					
+						<h2 th:text="${article.name}"></h2>
+			
+						<div class="col-md-12">
 							
-								<div class="form-group">
-									<label th:text="${field.name}"></label>
-								<!-- based on type, show diff form inputs here -->
-									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
-										
-										<div class="media">
-										  <div class="media-left">
-										    <a id="myimage" href="#">
-										    	<!-- do we have an image? -->
-										      <img id="myimage" class="media-object" src="http://placehold.it/50x50" alt="..."></img>
-										    </a>
-										  </div>
-										  <div class="media-body">
-											<p id="mydescription">/moosholz/nameoftheimage</p>
-											<div class="upload_form"></div>
-											<input id="myvalue" type="hidden" name="myvalue" value=""></input>										    
-										  </div>
-										</div>
-										
-									</th:block>
-									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
-										<input type="text"></input>
-									</th:block>
-									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).SUBTITLE}">
-										<input type="text"></input>
-									</th:block>
-									<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TEXT}">
-										<textarea rows="3" cols="80"></textarea>
-									</th:block>
+							<div class="row-fluid" th:each="field : ${article.fields}">
+					
+								<div class="col-xs-12">
+								
+									<div class="form-group">
+										<label th:text="${field.name}"></label>
+									<!-- based on type, show diff form inputs here -->
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
+											
+											<div class="media">
+											  <div class="media-left">
+											    <a th:id="${field.fieldName} + '_image'" href="#">
+											    	<!-- do we have an image? -->
+											      <img class="media-object" src="http://placehold.it/50x50" alt="..."></img>
+											    </a>
+											  </div>
+											  <div class="media-body">
+												<p th:id="${field.fieldName} + '_description'" th:text="${editor.page.valueOf(field.fieldName)}"></p>
+												<div th:id="${field.fieldName} + '_upload_form'" class="upload_form"></div>
+												<input th:id="${field.fieldName} + '_value'" type="hidden" th:name="${field.fieldName}"  th:value="${editor.page.valueOf(field.fieldName)}"></input>										    
+											  </div>
+											</div>
+											
+										</th:block>
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
+											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
+										</th:block>
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).SUBTITLE}">
+											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
+										</th:block>
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TEXT}">
+											<textarea rows="3" cols="80" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></textarea>
+										</th:block>
+									
+									</div>
 								
 								</div>
 							
 							</div>
 						
+							
 						</div>
 					
-						
 					</div>
-				
+					
 				</div>
-				
+			
 			</div>
 		
-		</div>
+		</form>
 	
 	</div>
 
 	<th:block th:include="admin/fragments/scripts::scripts"></th:block>
 	<th:block th:include="admin/fragments/scripts::cloudinary"></th:block>
 	
-	<script type="text/javascript">
+	<th:block th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
+		<th:block th:each="article : ${section.articles}">
+			<th:block th:each="field : ${article.fields}" th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
+				<script type="text/javascript" th:inline="javascript">
+				/*<![CDATA[*/
+					$(function(){
+						
+						var inputTag = $.cloudinary.unsigned_upload_tag("ri7mo9sg", { cloud_name: 'dmm5h0tbd' });
+						
+						var formSelector = /*[['#' + ${field.fieldName} + '_upload_form']]*/ '#upload_form';
+						var valueSelector = /*[['#' + ${field.fieldName} + '_value']]*/ '#myvalue';
+						var imageSelector = /*[['#' + ${field.fieldName} + '_image']]*/ '#myimage';
+						var descSelector = /*[['#' + ${field.fieldName} + '_description']]*/ '#mydescription';
+						
+						$(formSelector).append(inputTag);
+						
+						$(inputTag).bind('cloudinarydone', function(e, data) {
+							
+							$(valueSelector).val( data.result.public_id );
+							
+							$(imageSelector).empty().append(
+								$.cloudinary.image(data.result.public_id, 
+								    { format: 'png', width: 50, height: 50, 
+								      crop: 'thumb', effect: 'saturation:50' } )
+								);
+							
+							$(descSelector).text( data.result.public_id );
+							
+						});			
+						
+					});
+				/*]]>*/
+				</script>
+			</th:block>
+		</th:block>
+	</th:block>
 	
-		$(function(){
-			
-			$.cloudinary.config({ cloud_name: 'dmm5h0tbd', api_key: '291184879931785'})
-			
-			var inputTag = $.cloudinary.unsigned_upload_tag("ri7mo9sg", { cloud_name: 'dmm5h0tbd' });
-			
-			$('.upload_form').append(inputTag);
-			
-			$(inputTag)
-				.bind('cloudinarydone', function(e, data) {
-					
-					$("#myvalue").val( data.result.public_id );
-					
-					$('#myimage').empty().append(
-						$.cloudinary.image(data.result.public_id, 
-						    { format: 'png', width: 50, height: 50, 
-						      crop: 'thumb', effect: 'saturation:50' } )
-						);
-					
-					$('#mydescription').text( data.result.public_id );
-					
-				});			
-		});
-	
-	</script>
 
 </body>
 </html>

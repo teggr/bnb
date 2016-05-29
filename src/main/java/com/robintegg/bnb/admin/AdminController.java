@@ -1,6 +1,7 @@
 package com.robintegg.bnb.admin;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
@@ -10,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Controller
@@ -27,7 +29,7 @@ public class AdminController {
 	public String getAdmin() {
 		return "redirect:/admin/pages";
 	}
-	
+
 	@RequestMapping(path = "/images", method = RequestMethod.GET)
 	public String getImagesAdmin(ModelMap model) {
 
@@ -52,6 +54,19 @@ public class AdminController {
 
 	@RequestMapping(path = "/pages/{id}", method = RequestMethod.GET)
 	public String getPageAdmin(@PathVariable("id") Long id, ModelMap model) {
+
+		PageEditor editor = adminService.getPageEditor(id);
+
+		model.addAttribute("editor", editor);
+
+		return "admin/page";
+
+	}
+
+	@RequestMapping(path = "/pages/{id}", method = RequestMethod.POST)
+	public String getSavePage(@PathVariable("id") Long id, @RequestParam Map<String, String> fields, ModelMap model) {
+
+		System.out.println(fields);
 
 		PageEditor editor = adminService.getPageEditor(id);
 

@@ -33,6 +33,7 @@ public class Page extends BaseEntity {
 	private String template;
 	private boolean home;
 	private Title title;
+	private PageModel model = new PageModel();
 
 	public Page(Builder builder) {
 		this.title = builder.title;
@@ -51,6 +52,10 @@ public class Page extends BaseEntity {
 
 	public Title getTitle() {
 		return title;
+	}
+
+	public String valueOf(String fieldName) {
+		return model.getValue(fieldName);
 	}
 
 }
