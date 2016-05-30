@@ -3,15 +3,20 @@ package com.robintegg.bnb.admin;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.robintegg.bnb.utils.UrlResolver;
 
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @Controller
@@ -42,11 +47,12 @@ public class AdminController {
 	}
 
 	@RequestMapping(path = "/pages", method = RequestMethod.GET)
-	public String getPagesAdmin(ModelMap model) {
+	public String getPagesAdmin(HttpServletRequest request, ModelMap model) {
 
 		List<PageThumbnail> listOfPages = adminService.getPageThumbnails();
 
 		model.addAttribute("pages", listOfPages);
+		model.addAttribute("urlResolver", new UrlResolver(request));
 
 		return "admin/pages";
 

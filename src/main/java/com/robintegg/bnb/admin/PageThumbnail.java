@@ -8,10 +8,12 @@ public class PageThumbnail {
 
 	private String name;
 	private Long id;
+	private String image;
 
 	public PageThumbnail(Page p, Locale locale) {
 		id = p.getId();
 		name = p.getTitle().getText();
+		image = p.getThumbnailImage();
 	}
 
 	public Long getId() {
@@ -20,6 +22,10 @@ public class PageThumbnail {
 
 	public String getName() {
 		return name;
+	}
+	
+	public String getImage() {
+		return image;
 	}
 
 }

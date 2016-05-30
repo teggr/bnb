@@ -58,4 +58,8 @@ public class Page extends BaseEntity {
 		return model.getValue(fieldName);
 	}
 
+	public String getThumbnailImage() {
+		return model.getImage().orElse(null);
+	}
+
 }
