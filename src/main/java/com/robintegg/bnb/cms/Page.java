@@ -1,8 +1,18 @@
 package com.robintegg.bnb.cms;
 
+import java.util.Collection;
+import java.util.List;
+
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+
 import com.robintegg.bnb.core.Title;
 import com.robintegg.bnb.db.BaseEntity;
 
+@Entity
 public class Page extends BaseEntity {
 
 	public static class Builder {
@@ -32,8 +42,16 @@ public class Page extends BaseEntity {
 
 	private String template;
 	private boolean home;
+	
+	@Embedded
 	private Title title;
-	private PageModel model = new PageModel();
+	
+	@ElementCollection
+	@CollectionTable(
+	    name="FIELD_VALUE",
+	    joinColumns=@JoinColumn(name="PAGE_ID")
+	 )
+	private List<FieldValue> fieldValues;
 
 	public Page(Builder builder) {
 		this.title = builder.title;
@@ -41,6 +59,8 @@ public class Page extends BaseEntity {
 		this.home = builder.home;
 		setId(builder.id);
 	}
+	
+	Page() {}
 
 	public boolean isHome() {
 		return home;
@@ -53,13 +73,9 @@ public class Page extends BaseEntity {
 	public Title getTitle() {
 		return title;
 	}
-
-	public String valueOf(String fieldName) {
-		return model.getValue(fieldName);
-	}
-
-	public String getThumbnailImage() {
-		return model.getImage().orElse(null);
+	
+	public Collection<FieldValue> getFieldValues() {
+		return fieldValues;
 	}
 
 }

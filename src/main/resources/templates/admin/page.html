@@ -29,8 +29,8 @@
 			
 				<div class="col-md-12">
 				
-					<h1 th:text="${editor.page.title.text}"></h1>
-					<p th:text="${editor.page.title.slug}"></p>
+					<h1 th:text="${editor.page.title}"></h1>
+					<p th:text="${editor.page.slug}"></p>
 				
 				</div>
 			
@@ -55,7 +55,7 @@
 									<div class="form-group">
 										<label th:text="${field.name}"></label>
 									<!-- based on type, show diff form inputs here -->
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).IMAGE}">
 											
 											<div class="media">
 											  <div class="media-left">
@@ -72,13 +72,13 @@
 											</div>
 											
 										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TITLE}">
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TITLE}">
 											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
 										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).SUBTITLE}">
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).SUBTITLE}">
 											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
 										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).TEXT}">
+										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TEXT}">
 											<textarea rows="3" cols="80" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></textarea>
 										</th:block>
 									
@@ -106,7 +106,7 @@
 	
 	<th:block th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
 		<th:block th:each="article : ${section.articles}">
-			<th:block th:each="field : ${article.fields}" th:if="${field.type == T(com.robintegg.bnb.cms.Field.Type).IMAGE}">
+			<th:block th:each="field : ${article.fields}" th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).IMAGE}">
 				<script type="text/javascript" th:inline="javascript">
 				/*<![CDATA[*/
 					$(function(){

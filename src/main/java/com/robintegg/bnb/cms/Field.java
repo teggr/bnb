@@ -4,18 +4,14 @@ import java.util.stream.Collectors;
 
 public class Field extends AbstractContentNode {
 
-	public enum Type {
-		IMAGE, TITLE, TEXT, SUBTITLE;
-	}
+	private FieldType type;
 
-	private Type type;
-
-	public Field(String name, Type type) {
+	public Field(String name, FieldType type) {
 		super(name);
 		this.type = type;
 	}
 
-	public Type getType() {
+	public FieldType getType() {
 		return type;
 	}
 

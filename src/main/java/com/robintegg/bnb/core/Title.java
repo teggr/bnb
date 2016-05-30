@@ -1,5 +1,8 @@
 package com.robintegg.bnb.core;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Title {
 
 	private String text;
@@ -9,6 +12,8 @@ public class Title {
 		this.text = text;
 		this.slug = "/" + text.toLowerCase().replaceAll(" ", "-");
 	}
+	
+	Title() {}
 
 	public String getSlug() {
 		return slug;

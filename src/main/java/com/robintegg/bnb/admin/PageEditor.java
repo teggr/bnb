@@ -1,19 +1,20 @@
 package com.robintegg.bnb.admin;
 
 import com.robintegg.bnb.cms.Page;
+import com.robintegg.bnb.cms.PageModel;
 import com.robintegg.bnb.cms.PageTemplate;
 
 public class PageEditor {
 
-	private Page page;
+	private PageModel page;
 	private PageTemplate pageTemplate;
 
-	public PageEditor(Page page, PageTemplate pageTemplate) {
+	public PageEditor(PageModel page, PageTemplate pageTemplate) {
 		this.page = page;
 		this.pageTemplate = pageTemplate;
 	}
 	
-	public Page getPage() {
+	public PageModel getPage() {
 		return page;
 	}
 	

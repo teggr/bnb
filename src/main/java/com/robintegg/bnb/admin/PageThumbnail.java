@@ -2,7 +2,7 @@ package com.robintegg.bnb.admin;
 
 import java.util.Locale;
 
-import com.robintegg.bnb.cms.Page;
+import com.robintegg.bnb.cms.PageModel;
 
 public class PageThumbnail {
 
@@ -10,9 +10,9 @@ public class PageThumbnail {
 	private Long id;
 	private String image;
 
-	public PageThumbnail(Page p, Locale locale) {
+	public PageThumbnail(PageModel p, Locale locale) {
 		id = p.getId();
-		name = p.getTitle().getText();
+		name = p.getTitle();
 		image = p.getThumbnailImage();
 	}
 
@@ -23,7 +23,7 @@ public class PageThumbnail {
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getImage() {
 		return image;
 	}

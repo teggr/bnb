@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.robintegg.bnb.cms.Page;
+import com.robintegg.bnb.cms.PageModel;
 import com.robintegg.bnb.cms.PageRepository;
 import com.robintegg.bnb.cms.PageTemplate;
 import com.robintegg.bnb.cms.PageTemplateRepository;
@@ -30,7 +31,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<PageThumbnail> getPageThumbnails() {
-		return pageRepository.findAll().stream().map(p -> new PageThumbnail(p, localeService.getDefaultLocale()))
+		return pageRepository.findAll().stream()
+				.map(p -> new PageThumbnail(new PageModel(p), localeService.getDefaultLocale()))
 				.collect(Collectors.toList());
 	}
 
@@ -45,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
 
 		listFields(pageTemplate);
 
-		return new PageEditor(page, pageTemplate);
+		return new PageEditor( new PageModel(page), pageTemplate);
 
 	}
 
