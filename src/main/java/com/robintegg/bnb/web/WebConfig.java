@@ -31,7 +31,7 @@ public class WebConfig {
 	@Bean
 	public FixedCustomLocaleResolver localeResolver() {
 		FixedCustomLocaleResolver resolver = new FixedCustomLocaleResolver();
-		resolver.setDefaultLocale(Locale.GERMAN);
+		resolver.setDefaultLocale(Locale.ENGLISH);
 		return resolver;
 	}
 

@@ -34,7 +34,11 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 
 		model.addAttribute("lodging", singleLodgingService.getLodging());
 
-		return new ModelAndView(pageRepository.findByHome(true).getTemplate(), model);
+		Page page = pageRepository.findByHome(true);
+
+		model.addAttribute("model", new PageModel( page) );
+
+		return new ModelAndView(page.getTemplate(), model);
 	}
 
 	@Override
@@ -46,7 +50,11 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 
 		model.addAttribute("lodging", singleLodgingService.getLodging());
 
-		return new ModelAndView(pageRepository.findByTitleSlug(path).getTemplate(), model);
+		Page page = pageRepository.findByTitleSlug(path);
+
+		model.addAttribute("model", new PageModel(page) );
+
+		return new ModelAndView(page.getTemplate(), model);
 	}
 
 }

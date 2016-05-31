@@ -15,9 +15,9 @@ public class ContentLocaleRepository {
 
 	public ContentLocaleRepository() {
 		locales = new HashMap<>();
-		defaualtLocale = new ContentLocale(Locale.GERMAN);
-		locales.put(Locale.GERMAN.getLanguage(), defaualtLocale);
-		locales.put(Locale.ENGLISH.getLanguage(), new ContentLocale(Locale.ENGLISH));
+		defaualtLocale = new ContentLocale(Locale.ENGLISH);
+		locales.put(Locale.ENGLISH.getLanguage(), defaualtLocale);
+		locales.put(Locale.GERMAN.getLanguage(), new ContentLocale(Locale.GERMAN));
 	}
 
 	public Optional<ContentLocale> findByDefaultLocale(boolean defaultLocale) {

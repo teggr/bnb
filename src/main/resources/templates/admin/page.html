@@ -133,7 +133,9 @@
 						
 						$(inputTag).bind('cloudinarydone', function(e, data) {
 							
-							$(valueSelector).val( data.result.public_id );
+							var imgUrl = 'http://res.cloudinary.com/dmm5h0tbd/' + data.result.public_id;
+							
+							$(valueSelector).val( imgUrl );
 							
 							$(imageSelector).empty().append(
 								$.cloudinary.image(data.result.public_id, 
@@ -141,7 +143,7 @@
 								      crop: 'thumb', effect: 'saturation:50' } )
 								);
 							
-							$(descSelector).text( data.result.public_id );
+							$(descSelector).text( imgUrl );
 							
 						});			
 						

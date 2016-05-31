@@ -44,7 +44,7 @@ public class LocaleServiceImpl implements LocaleService {
 
 	@Override
 	public Locale getDefaultLocale() {
-		return localeRepository.findByDefaultLocale(true).orElse(new ContentLocale(Locale.GERMAN)).getLocale();
+		return localeRepository.findByDefaultLocale(true).orElse(new ContentLocale(Locale.ENGLISH)).getLocale();
 	}
 
 	@Override

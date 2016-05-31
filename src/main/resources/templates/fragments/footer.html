@@ -7,7 +7,7 @@
 	<div class="container">
 		<div class="row">
 			<p class="pull-right">
-				<a href="#">Back to top</a>
+				<a href="#" th:text="#{footer.back}"></a>
 			</p>
 		</div>
 	</div>
@@ -19,14 +19,14 @@
 			<div class="row">
 
 				<div class="col-md-3">
-					<h4>Location</h4>
-					<a target="blank" th:href="${lodging.map?.url}">
+					<h4 th:text="#{footer.location}"></h4>
+					<a target="blank" th:href="#{lodging.map.url}">
 						<address>
-							<strong th:text="${lodging.address?.addressLine1}"></strong><br />
-							<span th:text="${lodging.address?.addressLine2}"></span> <br />
-							<span th:text="${lodging.address?.addressLine3}"></span> <br />
-							<span th:text="${lodging.address?.addressLine4}"></span> <br />
-							<span th:text="${lodging.address?.addressLine5}"></span> <br />
+							<strong th:text="#{lodging.addressLine1}"></strong><br />
+							<span th:text="#{lodging.addressLine2}"></span> <br />
+							<span th:text="#{lodging.addressLine3}"></span> <br />
+							<span th:text="#{lodging.addressLine4}"></span> <br />
+							<span th:text="#{lodging.addressLine5}"></span> <br />
 							<img class="img-responsive footer-map" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/map-small" alt="Generic placeholder image"></img>
 						</address>
 					</a>
@@ -34,7 +34,7 @@
 				<!-- /.col-lg-3 -->
 
 				<div class="col-md-3">
-					<h4>Contact Us</h4>
+					<h4 th:text="#{footer.contact}"></h4>
 					<address>
 						<abbr title="Telephone">T:</abbr> <span th:text="${lodging.landline?.number}"></span>
 					</address>
@@ -48,24 +48,24 @@
 				<!-- /.col-lg-4 -->
 
 				<div class="col-md-3">
-					<h4>Social Network</h4>
+					<h4 th:text="#{footer.social}"></h4>
 					<ul>
-						<li>Facebook</li>
-						<li>Twitter</li>
-						<li>Tripadvisor</li>
+						<li th:text="#{footer.facebook}"></li>
+						<li th:text="#{footer.twitter}"></li>
+						<li th:text="#{footer.tripadvisor}"></li>
 					</ul>
 
 				</div>
 				<!-- /.col-lg-4 -->
 				<div class="col-md-3">
-					<h4>Languages</h4>
+					<h4 th:text="#{footer.languages}"></h4>
 					<ul class="languages">
 						<li><img width="12px" height="12px" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/german"></img>
-							<a th:href="@{/}">Deutsche</a></li>
+							<a th:href="@{/}"  th:text="#{footer.german}"></a></li>
 						<li><img width="12px" height="12px" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/british"></img>
-							<a th:href="@{/en}">English</a></li>
+							<a th:href="@{/en}" th:text="#{footer.englis}"></a></li>
 					</ul>
-					<h4>Copyright</h4>
+					<h4 th:text="#{footer.copy}"></h4>
 					<p>
 						&copy; 2016 Company, Inc. &middot; <a href="#">Privacy</a>
 						&middot; <a href="#">Terms</a>
