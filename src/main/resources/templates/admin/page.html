@@ -29,8 +29,11 @@
 			
 				<div class="col-md-12">
 				
-					<h1 th:text="${editor.page.title}"></h1>
-					<p th:text="${editor.page.slug}"></p>
+					<div class="panel  panel-default">
+						<div class="panel-body">
+							<h1><span th:text="${editor.page.title}"></span> <small th:text="${editor.page.slug}"></small></h1>
+						</div>					
+					</div>
 				
 				</div>
 			
@@ -39,59 +42,67 @@
 			<div class="row" th:each="section : ${editor.pageTemplate.contentTemplate.sections}">
 			
 				<div class="col-md-12">
-					
-					<h1 th:text="${section.title}"></h1>
-					
-					<div class="row-fluid" th:each="article : ${section.articles}">
-					
-						<h2 th:text="${article.name}"></h2>
-			
-						<div class="col-md-12">
-							
-							<div class="row-fluid" th:each="field : ${article.fields}">
-					
-								<div class="col-xs-12">
+				
+				<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h2 class="panel-title" th:text="${section.title}"></h2>
+					  </div>
+					  <div class="panel-body">
+					  
+					  <div class="row-fluid" th:each="article : ${section.articles}">
+						
+							<h3><u th:text="${article.name}"></u></h3>
+				
+							<div class="col-md-12">
 								
-									<div class="form-group">
-										<label th:text="${field.name}"></label>
-									<!-- based on type, show diff form inputs here -->
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).IMAGE}">
-											
-											<div class="media">
-											  <div class="media-left">
-											    <a th:id="${field.fieldName} + '_image'" href="#">
-											    	<!-- do we have an image? -->
-											      <img class="media-object" src="http://placehold.it/50x50" alt="..."></img>
-											    </a>
-											  </div>
-											  <div class="media-body">
-												<p th:id="${field.fieldName} + '_description'" th:text="${editor.page.valueOf(field.fieldName)}"></p>
-												<div th:id="${field.fieldName} + '_upload_form'" class="upload_form"></div>
-												<input th:id="${field.fieldName} + '_value'" type="hidden" th:name="${field.fieldName}"  th:value="${editor.page.valueOf(field.fieldName)}"></input>										    
-											  </div>
-											</div>
-											
-										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TITLE}">
-											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
-										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).SUBTITLE}">
-											<input type="text" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
-										</th:block>
-										<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TEXT}">
-											<textarea rows="3" cols="80" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></textarea>
-										</th:block>
+								<div class="row-fluid" th:each="field : ${article.fields}">
+						
+									<div class="col-xs-12">
+									
+										<div class="form-group">
+											<label th:text="${field.name}" th:for="${field.fieldName}"></label>
+											<!-- based on type, show diff form inputs here -->
+											<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).IMAGE}">
+												
+												<div class="media">
+												  <div class="media-left">
+												    <a th:id="${field.fieldName} + '_image'" href="#">
+												    	<!-- do we have an image? -->
+												      <img class="media-object" src="http://placehold.it/50x50" alt="..."></img>
+												    </a>
+												  </div>
+												  <div class="media-body">
+													<p th:id="${field.fieldName} + '_description'" th:text="${editor.page.valueOf(field.fieldName)}"></p>
+													<div th:id="${field.fieldName} + '_upload_form'" class="upload_form"></div>
+													<input th:id="${field.fieldName} + '_value'" type="hidden" th:name="${field.fieldName}"  th:value="${editor.page.valueOf(field.fieldName)}"></input>										    
+												  </div>
+												</div>
+												
+											</th:block>
+											<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TITLE}">
+												<input type="text" class="form-control" th:id="${field.fieldName}" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
+											</th:block>
+											<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).SUBTITLE}">
+												<input type="text" class="form-control" th:id="${field.fieldName}" th:name="${field.fieldName}" th:value="${editor.page.valueOf(field.fieldName)}"></input>
+											</th:block>
+											<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).TEXT}">
+												<textarea rows="3" cols="80" class="form-control" th:id="${field.fieldName}" th:name="${field.fieldName}" th:text="${editor.page.valueOf(field.fieldName)}"></textarea>
+											</th:block>
+										
+										</div>
 									
 									</div>
 								
 								</div>
 							
+								
 							</div>
 						
-							
 						</div>
-					
-					</div>
+					  		
+					  
+					  </div>
+					</div>					
 					
 				</div>
 			

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -73,6 +72,8 @@ public class AdminController {
 	public String getSavePage(@PathVariable("id") Long id, @RequestParam Map<String, String> fields, ModelMap model) {
 
 		System.out.println(fields);
+		
+		adminService.updatePage( id, fields );
 
 		PageEditor editor = adminService.getPageEditor(id);
 

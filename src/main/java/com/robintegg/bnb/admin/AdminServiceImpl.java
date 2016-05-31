@@ -1,12 +1,16 @@
 
 package com.robintegg.bnb.admin;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.robintegg.bnb.cms.FieldValue;
 import com.robintegg.bnb.cms.Page;
 import com.robintegg.bnb.cms.PageModel;
 import com.robintegg.bnb.cms.PageRepository;
@@ -37,9 +41,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public PageEditor getPageEditor(Long id) {
+	public PageEditor getPageEditor(Long pageId) {
 
-		Page page = pageRepository.findOne(id);
+		Page page = pageRepository.findOne(pageId);
 
 		String template = page.getTemplate();
 
@@ -47,7 +51,7 @@ public class AdminServiceImpl implements AdminService {
 
 		listFields(pageTemplate);
 
-		return new PageEditor( new PageModel(page), pageTemplate);
+		return new PageEditor(new PageModel(page), pageTemplate);
 
 	}
 
@@ -56,6 +60,25 @@ public class AdminServiceImpl implements AdminService {
 		pageTemplate.getContentTemplate().getSections().stream().flatMap(s -> s.getArticles().stream())
 				.flatMap(a -> a.getFields().stream()).forEach(f -> System.out.println(f.getFieldName()));
 
+	}
+
+	@Override
+	public void updatePage(Long pageId, Map<String, String> fields) {
+
+		Page page = pageRepository.findOne(pageId);
+
+		page.updateFieldValues(createFieldValues(fields));
+
+		pageRepository.save(page);
+
+	}
+
+	private List<FieldValue> createFieldValues(Map<String, String> fields) {
+		List<FieldValue> list = new ArrayList<>();
+		for (Entry<String, String> fieldEntry : fields.entrySet()) {
+			list.add(new FieldValue(fieldEntry.getKey(), fieldEntry.getValue()));
+		}
+		return list;
 	}
 
 }

@@ -77,5 +77,10 @@ public class Page extends BaseEntity {
 	public Collection<FieldValue> getFieldValues() {
 		return fieldValues;
 	}
+	
+	public void updateFieldValues(Collection<FieldValue> fieldValues) {
+		this.fieldValues.clear();
+		this.fieldValues.addAll(fieldValues);
+	}
 
 }
