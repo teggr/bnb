@@ -1,10 +1,13 @@
 package com.robintegg.bnb.admin;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -22,6 +25,8 @@ import com.robintegg.bnb.utils.UrlResolver;
 @RequestMapping("/admin")
 public class AdminController {
 
+	private static final Logger log = LoggerFactory.getLogger(AdminController.class);
+
 	private AdminService adminService;
 
 	@Autowired
@@ -36,51 +41,43 @@ public class AdminController {
 
 	@RequestMapping(path = "/images", method = RequestMethod.GET)
 	public String getImagesAdmin(ModelMap model) {
-
-		List<PageThumbnail> listOfPages = adminService.getPageThumbnails();
-
-		model.addAttribute("pages", listOfPages);
-
 		return "admin/images";
-
 	}
 
 	@RequestMapping(path = "/pages", method = RequestMethod.GET)
 	public String getPagesAdmin(HttpServletRequest request, ModelMap model) {
-
-		List<PageThumbnail> listOfPages = adminService.getPageThumbnails();
-
+		Collection<PageThumbnail> listOfPages = adminService.getPageThumbnails();
 		model.addAttribute("pages", listOfPages);
 		model.addAttribute("urlResolver", new UrlResolver(request));
-
 		return "admin/pages";
-
 	}
 
 	@RequestMapping(path = "/pages/{id}", method = RequestMethod.GET)
 	public String getPageAdmin(@PathVariable("id") Long id, ModelMap model) {
-
 		PageEditor editor = adminService.getPageEditor(id);
-
 		model.addAttribute("editor", editor);
-
 		return "admin/page";
-
 	}
 
 	@RequestMapping(path = "/pages/{id}", method = RequestMethod.POST)
-	public String getSavePage(@PathVariable("id") Long id, @RequestParam Map<String, String> fields, ModelMap model) {
+	public String savePage(@PathVariable("id") Long id, @RequestParam Map<String, String> fields, ModelMap model) {
+		log.debug("Save page: {}" + fields);
+		adminService.updatePage(id, fields);
+		return "redirect:/admin/page/" + id;
+	}
 
-		System.out.println(fields);
-		
-		adminService.updatePage( id, fields );
+	@RequestMapping(path = "/locales", method = RequestMethod.GET)
+	public String getLocalesAdmin(ModelMap model) {
+		Collection<LocaleOption> listOfLocales = adminService.getLocaleOptions();
+		model.addAttribute("locales", listOfLocales);
+		return "admin/locales";
+	}
 
-		PageEditor editor = adminService.getPageEditor(id);
-
-		model.addAttribute("editor", editor);
-
-		return "admin/page";
-
+	@RequestMapping(path = "/locales", method = RequestMethod.POST)
+	public String setDefaultLocale(@RequestParam("defaultLanguageCode") String language, ModelMap model) {
+		log.debug("Set default locale: {}", language);
+		adminService.setDefaultLocale(new Locale(language));
+		return "redirect:/admin/locales";
 	}
 
 }

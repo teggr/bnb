@@ -1,32 +1,20 @@
-package com.robintegg.bnb.locale;
+package com.robintegg.bnb.web;
 
-import java.util.Collections;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.LocaleResolver;
 
+import com.robintegg.bnb.locale.LocaleService;
+
 public class FixedCustomLocaleResolver implements LocaleResolver {
 
-	private Locale defaultLocale = Locale.getDefault();
+	private LocaleService localeService;
 
-	private Set<String> supportedCountryCodes = Collections.emptySet();
-
-	private Set<String> supportedLanguageCodes = Collections.emptySet();
-
-	public void setDefaultLocale(Locale defaultLocale) {
-		this.defaultLocale = defaultLocale;
-	}
-
-	public void setSupportedCountryCodes(Set<String> supportedCountryCodes) {
-		this.supportedCountryCodes = supportedCountryCodes;
-	}
-
-	public void setSupportedLanguageCodes(Set<String> supportedLanguageCodes) {
-		this.supportedLanguageCodes = supportedLanguageCodes;
+	public FixedCustomLocaleResolver(LocaleService localeService) {
+		this.localeService = localeService;
 	}
 
 	@Override
@@ -40,16 +28,16 @@ public class FixedCustomLocaleResolver implements LocaleResolver {
 				return new Locale(countryCode);
 			}
 		}
-		return defaultLocale;
+		return localeService.getDefaultLocale();
 	}
 
 	private boolean isSupportedLanguageCode(String languageCode) {
 		return languageCode != null
-				&& (supportedLanguageCodes.isEmpty() || supportedLanguageCodes.contains(languageCode));
+				&& localeService.isRegisteredLanguageCode(languageCode);
 	}
 
 	private boolean isSupportedCountyCode(String countryCode) {
-		return countryCode != null && (supportedCountryCodes.isEmpty() || supportedCountryCodes.contains(countryCode));
+		return countryCode != null && localeService.isRegisteredCountryCode(countryCode);
 	}
 
 	@Override

@@ -1,15 +1,12 @@
 package com.robintegg.bnb.web;
 
-import java.util.Locale;
-
 import javax.servlet.Filter;
 
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.robintegg.bnb.locale.FixedCustomLocaleResolver;
-import com.robintegg.bnb.locale.LocaleUrlFilter;
+import com.robintegg.bnb.locale.LocaleService;
 
 @Configuration
 public class WebConfig {
@@ -29,15 +26,8 @@ public class WebConfig {
 	}
 
 	@Bean
-	public FixedCustomLocaleResolver localeResolver() {
-		FixedCustomLocaleResolver resolver = new FixedCustomLocaleResolver();
-		resolver.setDefaultLocale(Locale.ENGLISH);
-		return resolver;
-	}
-
-	@Bean
-	public LocaleWatcher localeWatcher(FixedCustomLocaleResolver localeResolver) {
-		return new LocaleWatcher(localeResolver);
+	public FixedCustomLocaleResolver localeResolver(LocaleService localeService) {
+		return new FixedCustomLocaleResolver(localeService);
 	}
 
 }

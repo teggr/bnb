@@ -3,39 +3,46 @@ package com.robintegg.bnb.locale;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.robintegg.bnb.core.DomainEventPublisher;
-
 @Service
 public class LocaleServiceImpl implements LocaleService {
+	
+	private static final Logger log = LoggerFactory.getLogger(LocaleServiceImpl.class);
 
-	private ContentLocaleRepository localeRepository;
-	private DomainEventPublisher domainEventPublisher;
+	private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
+
+	private LocaleConfigurationRepository localeRepository;
 
 	@Autowired
-	public LocaleServiceImpl(ContentLocaleRepository localeRepository, DomainEventPublisher domainEventPublisher) {
+	public LocaleServiceImpl(LocaleConfigurationRepository localeRepository) {
 		this.localeRepository = localeRepository;
-		this.domainEventPublisher = domainEventPublisher;
 	}
 
 	@Override
-	public void updateDefaultLocale(Locale locale) {
+	public boolean isDefaultLocale(Locale locale) {
+		return getDefaultLocale().equals(locale);
+	}
 
+	@Override
+	public void setDefaultLocale(Locale locale) {		
+		log.info("Setting default locale {}", locale);
 		// does it need to be a registered locale. probably ...
 
-		Optional<ContentLocale> currentDefault = localeRepository.findByDefaultLocale(true);
+		Optional<LocaleConfiguration> currentDefault = localeRepository.findByDefaultLocale(true);
 		if (currentDefault.isPresent()) {
 			currentDefault.get().setDefaultLocale(false);
 		}
 
-		Optional<ContentLocale> targetLocale = localeRepository.findByLocale(locale);
+		Optional<LocaleConfiguration> targetLocale = localeRepository.findByLanguage(locale.getLanguage());
 		if (targetLocale.isPresent()) {
-			ContentLocale contentLocale = targetLocale.get();
+			LocaleConfiguration contentLocale = targetLocale.get();
 			contentLocale.setDefaultLocale(true);
-			domainEventPublisher.publishEvent(new DefaultLocaleChangeEvent(this, contentLocale));
 		}
 
 		// what if that locale wasn't there?
@@ -44,23 +51,32 @@ public class LocaleServiceImpl implements LocaleService {
 
 	@Override
 	public Locale getDefaultLocale() {
-		return localeRepository.findByDefaultLocale(true).orElse(new ContentLocale(Locale.ENGLISH)).getLocale();
-	}
-
-	@Override
-	public Collection<ContentLocale> getRegisteredLocales() {
-		return localeRepository.findAll();
-	}
-
-	@Override
-	public void registerLocale(Locale locale, boolean makeDefault) {
-		localeRepository.save(new ContentLocale(locale));
-
-		domainEventPublisher.publishEvent(new RegisteredLocaleChangeEvent(this, getRegisteredLocales()));
-
-		if (makeDefault) {
-			updateDefaultLocale(locale);
+		Optional<LocaleConfiguration> currentDefault = localeRepository.findByDefaultLocale(true);
+		if (currentDefault.isPresent()) {
+			return currentDefault.get().toLocale();
 		}
+		return DEFAULT_LOCALE;
+	}
+
+	@Override
+	public Collection<Locale> getLocales() {
+		return localeRepository.findAll().stream().map(r -> r.toLocale()).collect(Collectors.toList());
+	}
+
+	@Override
+	public void registerLocale(Locale locale) {		
+		log.info("Registering locale {}", locale);
+		localeRepository.save(new LocaleConfiguration(locale));
+	}
+
+	@Override
+	public boolean isRegisteredLanguageCode(String languageCode) {
+		return localeRepository.findByLanguage(languageCode).isPresent();
+	}
+
+	@Override
+	public boolean isRegisteredCountryCode(String countryCode) {
+		return localeRepository.findByCountry(countryCode).isPresent();
 	}
 
 }

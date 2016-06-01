@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="admin/fragments/head::head"></head>
+<body>
+
+	<th:block th:include="admin/fragments/header::header (location='locale')"></th:block>
+
+	<div class="container">
+
+		<div class="row">
+		
+			<div class="col-md-12">
+		
+				<form method="post">
+				
+					<th:block th:each="locale : ${locales}">
+					
+						<div class="radio">
+	  						<label>
+	    						<input type="radio" name="defaultLanguageCode" th:value="${locale.code}" th:checked="${locale.default}"></input>
+	    							Make <span th:text="${locale.language}"></span> the default locale.
+	  						</label>
+						</div>
+					
+					</th:block>
+
+					<button type="submit" class="btn btn-primary">Save changes</button>
+				
+				</form>
+				
+			</div>
+		
+		</div>
+	
+	</div>
+
+	<th:block th:include="admin/fragments/scripts::scripts"></th:block>
+
+</body>
+</html>

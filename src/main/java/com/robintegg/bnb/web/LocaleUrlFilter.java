@@ -1,4 +1,4 @@
-package com.robintegg.bnb.locale;
+package com.robintegg.bnb.web;
 
 import java.io.IOException;
 import java.util.regex.Matcher;

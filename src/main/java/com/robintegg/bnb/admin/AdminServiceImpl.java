@@ -2,10 +2,14 @@
 package com.robintegg.bnb.admin;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +22,7 @@ import com.robintegg.bnb.cms.PageTemplate;
 import com.robintegg.bnb.cms.PageTemplateRepository;
 import com.robintegg.bnb.locale.LocaleService;
 
+@Transactional
 @Service
 public class AdminServiceImpl implements AdminService {
 
@@ -34,7 +39,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<PageThumbnail> getPageThumbnails() {
+	public Collection<PageThumbnail> getPageThumbnails() {
 		return pageRepository.findAll().stream()
 				.map(p -> new PageThumbnail(new PageModel(p), localeService.getDefaultLocale()))
 				.collect(Collectors.toList());
@@ -42,35 +47,23 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public PageEditor getPageEditor(Long pageId) {
-
 		Page page = pageRepository.findOne(pageId);
-
 		String template = page.getTemplate();
-
 		PageTemplate pageTemplate = pageTemplateRepository.findByName(template);
-
 		listFields(pageTemplate);
-
 		return new PageEditor(new PageModel(page), pageTemplate);
-
 	}
 
 	private void listFields(PageTemplate pageTemplate) {
-
 		pageTemplate.getContentTemplate().getSections().stream().flatMap(s -> s.getArticles().stream())
 				.flatMap(a -> a.getFields().stream()).forEach(f -> System.out.println(f.getFieldName()));
-
 	}
 
 	@Override
 	public void updatePage(Long pageId, Map<String, String> fields) {
-
 		Page page = pageRepository.findOne(pageId);
-
 		page.updateFieldValues(createFieldValues(fields));
-
 		pageRepository.save(page);
-
 	}
 
 	private List<FieldValue> createFieldValues(Map<String, String> fields) {
@@ -79,6 +72,17 @@ public class AdminServiceImpl implements AdminService {
 			list.add(new FieldValue(fieldEntry.getKey(), fieldEntry.getValue()));
 		}
 		return list;
+	}
+
+	@Override
+	public Collection<LocaleOption> getLocaleOptions() {
+		return localeService.getLocales().stream()
+				.map(l -> new LocaleOption(l, localeService.isDefaultLocale(l))).collect(Collectors.toList());
+	}
+
+	@Override
+	public void setDefaultLocale(Locale locale) {
+		localeService.setDefaultLocale(locale);
 	}
 
 }
