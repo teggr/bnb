@@ -16,16 +16,13 @@ import com.robintegg.bnb.db.BaseEntity;
 public class Page extends BaseEntity {
 
 	public static class Builder {
-
-		private static long idGen = 1;
-		private Long id;
+		
 		private String template;
 		private boolean home = false;
 		private Title title;
 
 		public Builder(String template, Title title) {
 			this.title = title;
-			this.id = idGen++;
 			this.template = template;
 		}
 
@@ -57,7 +54,6 @@ public class Page extends BaseEntity {
 		this.title = builder.title;
 		this.template = builder.template;
 		this.home = builder.home;
-		setId(builder.id);
 	}
 	
 	Page() {}
