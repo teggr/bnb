@@ -23,7 +23,7 @@ public class PageModel {
 	public String valueOf(String key) {
 		return props.getOrDefault(key, "");
 	}
-	
+
 	public String getSlug() {
 		return slug;
 	}
@@ -38,6 +38,10 @@ public class PageModel {
 
 	public String getThumbnailImage() {
 		return props.keySet().stream().filter(k -> k.contains("image")).findFirst().orElse(null);
+	}
+
+	public boolean containsKey(String key) {
+		return props.containsKey(key);
 	}
 
 }

@@ -9,11 +9,11 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import com.robintegg.bnb.locale.LocaleService;
 
-public class FixedCustomLocaleResolver implements LocaleResolver {
+public class CustomLocaleResolver implements LocaleResolver {
 
 	private LocaleService localeService;
 
-	public FixedCustomLocaleResolver(LocaleService localeService) {
+	public CustomLocaleResolver(LocaleService localeService) {
 		this.localeService = localeService;
 	}
 
@@ -32,8 +32,7 @@ public class FixedCustomLocaleResolver implements LocaleResolver {
 	}
 
 	private boolean isSupportedLanguageCode(String languageCode) {
-		return languageCode != null
-				&& localeService.isRegisteredLanguageCode(languageCode);
+		return languageCode != null && localeService.isRegisteredLanguageCode(languageCode);
 	}
 
 	private boolean isSupportedCountyCode(String countryCode) {
