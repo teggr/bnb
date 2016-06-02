@@ -45,7 +45,7 @@ public class Page extends BaseEntity {
 	
 	@ElementCollection
 	@CollectionTable(
-	    name="FIELD_VALUE",
+	    name="PAGE_FIELD_VALUES",
 	    joinColumns=@JoinColumn(name="PAGE_ID")
 	 )
 	private List<FieldValue> fieldValues;

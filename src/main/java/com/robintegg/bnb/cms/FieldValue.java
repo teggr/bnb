@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 public class FieldValue {
 
 	private String name;
-	private String value;
+	private String value;	
 
 	public FieldValue(String name, String value) {
 		this.name = name;

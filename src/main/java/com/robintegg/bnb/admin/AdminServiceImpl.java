@@ -40,18 +40,18 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Collection<PageThumbnail> getPageThumbnails() {
-		return pageRepository.findAll().stream()
-				.map(p -> new PageThumbnail(new PageModel(p), localeService.getDefaultLocale()))
+		return pageRepository.findAll().stream().map(
+				p -> new PageThumbnail(new PageModel(p, localeService.getDefaultLocale()), localeService.getLocales()))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public PageEditor getPageEditor(Long pageId) {
+	public PageEditor getPageEditor(Long pageId, Locale locale) {
 		Page page = pageRepository.findOne(pageId);
 		String template = page.getTemplate();
 		PageTemplate pageTemplate = pageTemplateRepository.findByName(template);
 		listFields(pageTemplate);
-		return new PageEditor(new PageModel(page), pageTemplate);
+		return new PageEditor(new PageModel(page, locale), pageTemplate);
 	}
 
 	private void listFields(PageTemplate pageTemplate) {
@@ -60,9 +60,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void updatePage(Long pageId, Map<String, String> fields) {
+	public void updatePage(Long pageId, Locale locale, Map<String, String> fields) {
 		Page page = pageRepository.findOne(pageId);
-		page.updateFieldValues(createFieldValues(fields));
+		page.updateFieldValues(locale, createFieldValues(fields));
 		pageRepository.save(page);
 	}
 
@@ -76,8 +76,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Collection<LocaleOption> getLocaleOptions() {
-		return localeService.getLocales().stream()
-				.map(l -> new LocaleOption(l, localeService.isDefaultLocale(l))).collect(Collectors.toList());
+		return localeService.getLocales().stream().map(l -> new LocaleOption(l, localeService.isDefaultLocale(l)))
+				.collect(Collectors.toList());
 	}
 
 	@Override

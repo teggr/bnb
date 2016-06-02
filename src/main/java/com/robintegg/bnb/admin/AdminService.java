@@ -10,9 +10,9 @@ public interface AdminService {
 
 	Collection<PageThumbnail> getPageThumbnails();
 
-	PageEditor getPageEditor(Long pageId);
+	PageEditor getPageEditor(Long pageId, Locale locale);
 
-	void updatePage(Long pageId, Map<String, String> fields);
+	void updatePage(Long pageId, Locale locale, Map<String, String> fields);
 	
 	// locale admin
 

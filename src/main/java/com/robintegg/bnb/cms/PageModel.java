@@ -1,6 +1,7 @@
 package com.robintegg.bnb.cms;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class PageModel {
@@ -13,11 +14,12 @@ public class PageModel {
 
 	private String slug;
 
-	public PageModel(Page p) {
+	public PageModel(Page p, Locale locale) {
 		id = p.getId();
 		title = p.getTitle().getText();
 		slug = p.getTitle().getSlug();
 		p.getFieldValues().stream().forEach(f -> props.put(f.getName(), f.getValue()));
+		//p.getFieldValues(locale).stream().forEach(f -> props.put(f.getName(), f.getValue()));
 	}
 
 	public String valueOf(String key) {

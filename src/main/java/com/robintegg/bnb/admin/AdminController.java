@@ -52,17 +52,18 @@ public class AdminController {
 		return "admin/pages";
 	}
 
-	@RequestMapping(path = "/pages/{id}", method = RequestMethod.GET)
-	public String getPageAdmin(@PathVariable("id") Long id, ModelMap model) {
-		PageEditor editor = adminService.getPageEditor(id);
+	@RequestMapping(path = "/pages/{id}/{locale}", method = RequestMethod.GET)
+	public String getPageAdmin(@PathVariable("id") Long id, @PathVariable("locale") String locale, ModelMap model) {
+		PageEditor editor = adminService.getPageEditor(id, new Locale(locale));
 		model.addAttribute("editor", editor);
 		return "admin/page";
 	}
 
-	@RequestMapping(path = "/pages/{id}", method = RequestMethod.POST)
-	public String savePage(@PathVariable("id") Long id, @RequestParam Map<String, String> fields, ModelMap model) {
+	@RequestMapping(path = "/pages/{id}/{locale}", method = RequestMethod.POST)
+	public String savePage(@PathVariable("id") Long id, @PathVariable("locale") String locale,
+			@RequestParam Map<String, String> fields, ModelMap model) {
 		log.debug("Save page: {}" + fields);
-		adminService.updatePage(id, fields);
+		adminService.updatePage(id, new Locale(locale), fields);
 		return "redirect:/admin/page/" + id;
 	}
 

@@ -15,7 +15,7 @@
 			      <img th:src="${page.image} ? ${urlResolver.resolve(page.image)} : 'http://placehold.it/250x150'" alt="..." width="100%" height="140px"></img>
 			      <div class="caption">
 			        <h3 th:text="${page.name}">Thumbnail label</h3>
-			        <p><a th:href="@{/admin/pages/{id}(id=${page.id})}" class="btn btn-primary" role="button">Edit</a></p>
+			        <p th:each="locale : ${page.locales}"><a th:href="@{/admin/pages/{id}/{locale}(id=${page.id},locale=${locale.language})}" class="btn btn-primary" role="button" th:text="${'Edit ' + locale.displayLanguage + ' page'}">Edit</a></p>
 			      </div>
 			    </div>
 			
