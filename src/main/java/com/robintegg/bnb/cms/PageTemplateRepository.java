@@ -19,12 +19,35 @@ public class PageTemplateRepository {
 
 	private void createContactTemplate() {
 		ContentTemplate.Builder contactBuilder = new ContentTemplate.Builder();
+		
+		// @formatter:off
+		
+		contactBuilder
+			.section(new Section.Builder("header")
+				.article(new Article.Builder("big_image")
+					.field(new Field( "image", FieldType.IMAGE)).build()
+				)
+			.build() );
+		
+		// @formatter:on
 
 		save(new PageTemplate("contact", contactBuilder.build()));
 	}
 
 	private void createBookingTemplate() {
 		ContentTemplate.Builder bookingBuilder = new ContentTemplate.Builder();
+		
+		// @formatter:off
+		
+		bookingBuilder
+			.section(new Section.Builder("header")
+				.article(new Article.Builder("big_image")
+					.field(new Field( "image", FieldType.IMAGE)).build()
+				)
+			.build() );
+		
+		// @formatter:on
+		
 		save(new PageTemplate("booking", bookingBuilder.build()));
 	}
 
