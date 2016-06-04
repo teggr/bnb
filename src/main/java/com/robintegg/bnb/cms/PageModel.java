@@ -24,7 +24,17 @@ public class PageModel {
 	}
 
 	public String valueOf(String key) {
-		return props.getOrDefault(key, "");
+		return props.get(key);
+	}
+	
+	public String imageOf(String key) {
+		String image = props.get(key);
+		if(image != null) {
+			if(StringUtils.isNotBlank(image)) {
+				return image;
+			}
+		}
+		return null;
 	}
 
 	public String getSlug() {

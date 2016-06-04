@@ -69,7 +69,7 @@
 												  <div class="media-left">
 												    <a th:id="${field.fieldName} + '_image'" href="#">
 												    	<!-- do we have an image? -->
-												      <img class="media-object" height="100px" width="100px" th:src="${''.equals( editor.page.valueOf(field.fieldName) )} ? 'http://placehold.it/100x100' : ${editor.page.valueOf(field.fieldName)}" alt="..."></img>
+												      <img class="media-object" height="100px" width="100px" th:src="${editor.page.imageOf(field.fieldName)} ? ${editor.page.valueOf(field.fieldName)} : 'http://placehold.it/100x100'" alt="..."></img>
 												    </a>
 												  </div>
 												  <div class="media-body">
