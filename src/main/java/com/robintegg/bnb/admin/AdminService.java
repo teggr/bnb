@@ -5,15 +5,15 @@ import java.util.Locale;
 import java.util.Map;
 
 public interface AdminService {
-	
+
 	// page admin
 
 	Collection<PageThumbnail> getPageThumbnails();
 
-	PageEditor getPageEditor(Long pageId, Locale locale);
+	PageEditor getPageEditor(Long pageId);
 
-	void updatePage(Long pageId, Locale locale, Map<String, String> fields);
-	
+	void updatePage(Long pageId, Map<String, String> fields);
+
 	// locale admin
 
 	Collection<LocaleOption> getLocaleOptions();

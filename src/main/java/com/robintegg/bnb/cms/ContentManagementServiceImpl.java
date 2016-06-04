@@ -36,7 +36,7 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 
 		Page page = pageRepository.findByHome(true);
 
-		model.addAttribute("model", new PageModel(page, locale));
+		model.addAttribute("model", new PageModel(page));
 
 		return new ModelAndView(page.getTemplate(), model);
 	}
@@ -52,7 +52,7 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 
 		Page page = pageRepository.findByTitleSlug(path);
 
-		model.addAttribute("model", new PageModel(page, locale));
+		model.addAttribute("model", new PageModel(page));
 
 		return new ModelAndView(page.getTemplate(), model);
 	}

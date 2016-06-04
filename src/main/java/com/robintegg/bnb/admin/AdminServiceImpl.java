@@ -40,18 +40,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Collection<PageThumbnail> getPageThumbnails() {
-		return pageRepository.findAll().stream().map(
-				p -> new PageThumbnail(new PageModel(p, localeService.getDefaultLocale()), localeService.getLocales()))
-				.collect(Collectors.toList());
+		return pageRepository.findAll().stream()
+				.map(p -> new PageThumbnail(new PageModel(p), localeService.getLocales())).collect(Collectors.toList());
 	}
 
 	@Override
-	public PageEditor getPageEditor(Long pageId, Locale locale) {
+	public PageEditor getPageEditor(Long pageId) {
 		Page page = pageRepository.findOne(pageId);
 		String template = page.getTemplate();
 		PageTemplate pageTemplate = pageTemplateRepository.findByName(template);
 		listFields(pageTemplate);
-		return new PageEditor(new PageModel(page, locale), pageTemplate);
+		return new PageEditor(new PageModel(page), pageTemplate);
 	}
 
 	private void listFields(PageTemplate pageTemplate) {
@@ -60,9 +59,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void updatePage(Long pageId, Locale locale, Map<String, String> fields) {
+	public void updatePage(Long pageId, Map<String, String> fields) {
 		Page page = pageRepository.findOne(pageId);
-		page.updateFieldValues(locale, createFieldValues(fields));
+		page.updateFieldValues(createFieldValues(fields));
 		pageRepository.save(page);
 	}
 
