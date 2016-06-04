@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 public class PageModel {
 
+
 	private Map<String, String> props = new HashMap<>();
 
 	private String title;
@@ -26,11 +27,11 @@ public class PageModel {
 	public String valueOf(String key) {
 		return props.get(key);
 	}
-	
+
 	public String imageOf(String key) {
 		String image = props.get(key);
-		if(image != null) {
-			if(StringUtils.isNotBlank(image)) {
+		if (image != null) {
+			if (StringUtils.isNotBlank(image)) {
 				return image;
 			}
 		}

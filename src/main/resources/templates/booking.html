@@ -29,45 +29,11 @@
 
       <div class="row featurette featurette-highlight">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Our prices. <span class="text-muted">Great value.</span></h2>
-          <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-		<table class="table">
-			<tbody>
-			<tr>
-			 <td>Suite (inkl. Fruehstuck, alle Getraenke, MwSt und Kurtaxen)</td>
-			<td>pro Nacht</td>
-			<td>£135.00</td>
-			</tr>
-			<tr>
-			<td>Suite (inkl. Fruehstuck, Abendessen, alle Getraenke, MwSt und Kurtaxen)	</td>
-			<td>pro Nacht	</td>
-			<td>£165,00</td>
-			</tr>
-			<tr>
-			<td>Abendessen</td>
-			<td>pro Person</td>
-			<td>£20,00</td>
-			</tr>
-			<tr>
-			<td>Picnic Hamper</td>
-			<td>pro Person</td>
-			<td>£15,00</td>
-			</tr>
-			<tr>
-			<td>Tiere (max 2)</td>
-			<td>pro Nacht/Tier</td>
-			<td>£7,50</td>
-			</tr>
-			<tr>
-			<td>Endreinigung (weniger als 3 Tage)</td>
-			<td>einmalig</td>
-			<td>£30,00</td>
-			</tr>
-			</tbody>
-		</table>
+          <h2 class="featurette-heading"><span th:text="#{prices_highlights_title}">Our prices.</span>  <span class="text-muted" th:text="#{prices_highlights_subtitle}">Great value.</span></h2>
+          <p class="lead" th:utext="#{prices_highlights_description('markdown')}" th:remove="tag">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
         </div>
         <div class="col-md-5">
-          <img class="featurette-image img-responsive center-block" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/feature-1" alt="Generic placeholder image"></img>
+          <img class="featurette-image img-responsive center-block" th:src="#{prices_highlights_image_1}" alt="Generic placeholder image"></img>
         </div>
       </div>
 
@@ -75,8 +41,8 @@
 
       <div class="row featurette featurette-highlight">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Availability &amp; Bookings.<span class="text-muted">Email us.</span></h2>
-          <p class="lead">Use the email form to send us an enquiry or to make a booking.</p>
+          <h2 class="featurette-heading"><span th:text="#{contact_form_title}">Availability &amp; Bookings.</span><span class="text-muted" th:text="#{contact_form_subtitle}">Email us.</span></h2>
+          <p class="lead" th:text="#{contact_form_descritpion}">Use the email form to send us an enquiry or to make a booking.</p>
         </div>
         <div class="col-md-5">
           

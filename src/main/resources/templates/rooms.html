@@ -11,12 +11,10 @@
 <!-- Carousel
     ================================================== -->
 
-     <div class="container">
-		<div class="jumbo-header">    	
-	      	<img class="jumbo-image" 
-	      		th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('header_big_image_image')}"
-	      		alt="First slide"></img>
-	    </div>
+    <div class="container">
+		<div class="jumbo-header">
+			<img class="jumbo-image" th:src="#{header_big_image_image}" />
+		</div>
 	</div>
    
     <!-- Marketing messaging and featurettes
@@ -31,61 +29,47 @@
 
       <div id="diebroken" class="row featurette featurette-highlight">
         <div class="col-md-7">
-          <h2 class="featurette-heading"><span th:text="${model.valueOf('description_room_title')}">Die Broken.</span> <span class="text-muted" th:text="${model.valueOf('description_room_subtitle')}">Views and vistas.</span></h2>
-          <p class="lead" th:text="${model.valueOf('description_room_description')}">The "Die Broken" suite is the oldest...</p>
-	<p>The suite measures about 45 square metres, comprises a lounge, bedroom and an en-suite bathroom. The suites are designed to provide the comfort and ease of living that you would expect from a top hotel and more. We pride ourselves on being better at the little things so, for example, instead of a few instant coffee sachets you have a Tassimo coffee machine to make delicious cappucino coffees.</p>
-<h4>ROOM FEATURES</h4>
- 	<ul>
-		<li>81cm Flat screen TV</li>
-		<li>DVD playerUse</li>
-		<li>Free WiFi</li>
-		<li>Tassimo coffee machine</li>
-		<li>Hair dryer and straighteners</li>
-		<li>Bath robes</li>
-		<li>Use of Wellness and Sport suite</li>
-		<li>Complementary use of lounge bar</li>
-		<li>Breakfast</li>
-	</ul>
-
+          <h2 class="featurette-heading"><span th:text="#{description_room_title}">Die Broken.</span> <span class="text-muted" th:text="#{description_room_subtitle}">Views and vistas.</span></h2>
+          <p th:utext="#{description_room_description('markdown')}" th:remove="tag">The "Die Broken" suite is the oldest...</p>
         </div>
         <div class="col-md-5">
-	<div class="suite-thumbnails">
-<div class="row">
-  <div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_1')}" alt="..."></img>
-    </a>
-  </div>
-<div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_2')}" alt="..."></img>
-    </a>
-  </div>
-<div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_3')}" alt="..."></img>
-    </a>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_4')}" alt="..."></img>
-    </a>
-  </div>
-<div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_5')}" alt="..."></img>
-    </a>
-  </div>
-<div class="col-xs-4 col-sm-3 col-md-4">
-    <a href="#" class="thumbnail">
-      <img th:src="'http://res.cloudinary.com/dmm5h0tbd/' + ${model.valueOf('description_room_image_6')}" alt="..."></img>
-    </a>
-  </div>
-</div>
-	</div>
+			<div class="suite-thumbnails">
+				<div class="row">
+				  <div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_1}" alt="..."></img>
+				    </a>
+				  </div>
+				<div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_2}" alt="..."></img>
+				    </a>
+				  </div>
+				<div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_3}" alt="..."></img>
+				    </a>
+				  </div>
+				</div>
+				
+				<div class="row">
+				  <div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_4}" alt="..."></img>
+				    </a>
+				  </div>
+				<div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_5}" alt="..."></img>
+				    </a>
+				  </div>
+				<div class="col-xs-4 col-sm-3 col-md-4">
+				    <a href="#" class="thumbnail">
+				      <img th:src="#{description_room_image_6}" alt="..."></img>
+				    </a>
+				  </div>
+				</div>
+			</div>
         </div>
       </div>
 

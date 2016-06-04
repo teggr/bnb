@@ -29,6 +29,24 @@ public class PageTemplateRepository {
 				)
 			.build() );
 		
+		contactBuilder
+			.section(new Section.Builder("contact")
+				.article(new Article.Builder("form")
+					.field(new Field( "title", FieldType.TITLE))
+					.field(new Field( "subtitle", FieldType.SUBTITLE)).build()
+				)
+			.build() );
+		
+		contactBuilder
+			.section(new Section.Builder("travel")
+				.article(new Article.Builder("directions")
+					.field(new Field( "title", FieldType.TITLE))
+					.field(new Field( "subtitle", FieldType.SUBTITLE))
+					.field(new Field("description", FieldType.TEXT))
+					.field(new Field( "image_1", FieldType.IMAGE)).build()
+				)
+			.build() );
+		
 		// @formatter:on
 
 		save(new PageTemplate("contact", contactBuilder.build()));
@@ -43,6 +61,25 @@ public class PageTemplateRepository {
 			.section(new Section.Builder("header")
 				.article(new Article.Builder("big_image")
 					.field(new Field( "image", FieldType.IMAGE)).build()
+				)
+			.build() );
+		
+		bookingBuilder
+			.section(new Section.Builder("prices")
+				.article(new Article.Builder("highlights")
+					.field(new Field( "title", FieldType.TITLE))
+					.field(new Field( "subtitle", FieldType.SUBTITLE))
+					.field(new Field("description", FieldType.TEXT))
+					.field(new Field( "image_1", FieldType.IMAGE)).build()
+				)
+			.build() );
+		
+		bookingBuilder
+			.section(new Section.Builder("contact")
+				.article(new Article.Builder("form")
+					.field(new Field( "title", FieldType.TITLE))
+					.field(new Field( "subtitle", FieldType.SUBTITLE))
+					.field(new Field("description", FieldType.TEXT)).build()
 				)
 			.build() );
 		

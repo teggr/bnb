@@ -24,9 +24,9 @@
     <div class="container marketing">
 	
 			
-	<?php if ( isset ( $_REQUEST['message_sent'] ) ) { ?>
-		<div class="alert alert-success" role="alert"><strong>Thanks for contacting us.</strong> You should receive a reply within 24 hours!</div>
-	<?php } ?>
+	
+<!-- 		<div class="alert alert-success" role="alert"><strong>Thanks for contacting us.</strong> You should receive a reply within 24 hours!</div> -->
+	
 
       <!-- START THE FEATURETTES -->
 
@@ -34,23 +34,25 @@
 
       <div class="row featurette featurette-highlight">
         <div class="col-md-7">
-          <h2 class="featurette-heading">Need to talk. <span class="text-muted">Get in touch.</span></h2>
+          <h2 class="featurette-heading"><span th:text="#{contact_form_title}">Need to talk.</span> <span class="text-muted" th:text="#{contact_form_subtitle}">Get in touch.</span></h2>
           <h4>Location</h4>
           <address>
-  <strong>Pension Moosholz</strong><br/>
-  Moosholzweg 4<br/>
-  D-38678<br/>
-  Deutschland<br/>
-</address>
-	 <address>
-  <abbr title="Telephone">T:</abbr> 01234 555555
-</address>
-<address>
-  <abbr title="Mobile">M:</abbr> 01234 666666
-</address>
-<address>
-  <abbr title="Email">E:</abbr> <a href="mailto:#">pension-moosholz@mail.de</a>
-</address>
+			<strong th:text="${lodging.address?.addressLine1}"></strong><br />
+			<span th:text="${lodging.address?.addressLine2}"></span> <br />
+			<span th:text="${lodging.address?.addressLine3}"></span> <br />
+			<span th:text="${lodging.address?.addressLine4}"></span> <br />
+			<span th:text="${lodging.address?.addressLine5}"></span> <br />
+			<img class="img-responsive footer-map" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/map-small" alt="Generic placeholder image"></img>
+		</address>
+		<address>
+				<abbr title="Telephone">T:</abbr> <span th:text="${lodging.landline?.number}"></span>
+			</address>
+			<address>
+				<abbr title="Mobile">M:</abbr> <span th:text="${lodging.mobile?.number}"></span>
+			</address>
+			<address>
+				<abbr title="Email">E:</abbr> <a href="mailto:#" th:text="${lodging.email?.address}"></a>
+			</address>
         </div>
         <div class="col-md-5">
          
@@ -63,12 +65,12 @@
 
       <div class="row featurette">
         <div class="col-md-7 col-md-push-5">
-          <h2 class="featurette-heading">Travelling here. <span class="text-muted">Find Us.</span></h2>
-          <p class="lead">Best way to get here is via the mountain pass...</p>
+          <h2 class="featurette-heading"><span th:text="#{travel_directions_title}">Travelling here.</span> <span class="text-muted" th:text="#{travel_directions_subtitle}">Find Us.</span></h2>
+          <p class="lead" th:utext="#{travel_directions_title}" th:remove="tag">Best way to get here is via the mountain pass...</p>
         </div>
         <div class="col-md-5 col-md-pull-7">
 			<a target="blank" href="https://www.google.co.uk/maps/place/Moosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany/@51.7765777,10.3320373,15z/data=!4m7!1m4!3m3!1s0x47a53b794f1a9479:0x440af30bbcb240e9!2sMoosholzweg+4,+38678+Clausthal-Zellerfeld,+Germany!3b1!3m1!1s0x47a53b794f1a9479:0x440af30bbcb240e9">
-			<img class="featurette-image img-responsive center-block" src="http://res.cloudinary.com/dmm5h0tbd/moosholz/map" alt="Generic placeholder image"></img>
+				<img class="featurette-image img-responsive center-block" th:src="#{travel_directions_image_1}" alt="Generic placeholder image"></img>
 			</a>
         </div>
       </div>
