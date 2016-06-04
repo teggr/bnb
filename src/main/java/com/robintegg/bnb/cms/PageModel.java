@@ -18,7 +18,7 @@ public class PageModel {
 		id = p.getId();
 		title = p.getTitle().getText();
 		slug = p.getTitle().getSlug();
-		p.getFieldValues().stream().forEach(f -> props.put(f.getName(), f.getValue()));
+		p.getFieldValues(locale).stream().forEach(f -> props.put(f.getName(), f.getValue()));
 		//p.getFieldValues(locale).stream().forEach(f -> props.put(f.getName(), f.getValue()));
 	}
 

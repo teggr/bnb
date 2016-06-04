@@ -64,7 +64,7 @@ public class AdminController {
 			@RequestParam Map<String, String> fields, ModelMap model) {
 		log.debug("Save page: {}" + fields);
 		adminService.updatePage(id, new Locale(locale), fields);
-		return "redirect:/admin/page/" + id;
+		return "redirect:/admin/pages/" + id + "/" + locale;
 	}
 
 	@RequestMapping(path = "/locales", method = RequestMethod.GET)
