@@ -2,6 +2,9 @@ package com.robintegg.bnb.cms;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class PageModel {
 
@@ -37,7 +40,14 @@ public class PageModel {
 	}
 
 	public String getThumbnailImage() {
-		return props.keySet().stream().filter(k -> k.contains("image")).findFirst().orElse(null);
+
+		// list get first properties with an image
+		for (Entry<String, String> entry : props.entrySet()) {
+			if (entry.getKey().contains("big_image") && StringUtils.isNotBlank(entry.getValue())) {
+				return entry.getValue();
+			}
+		}
+		return null;
 	}
 
 	public boolean containsKey(String key) {

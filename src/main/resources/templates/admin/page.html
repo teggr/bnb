@@ -64,17 +64,17 @@
 											<!-- based on type, show diff form inputs here -->
 											<th:block th:if="${field.type == T(com.robintegg.bnb.cms.FieldType).IMAGE}">
 												
+												<input class="form-control"  th:id="${field.fieldName} + '_value'" type="text" th:name="${field.fieldName}"  th:value="${editor.page.valueOf(field.fieldName)}"></input>										    
 												<div class="media">
 												  <div class="media-left">
 												    <a th:id="${field.fieldName} + '_image'" href="#">
 												    	<!-- do we have an image? -->
-												      <img class="media-object" src="http://placehold.it/50x50" alt="..."></img>
+												      <img class="media-object" height="100px" width="100px" th:src="${''.equals( editor.page.valueOf(field.fieldName) )} ? 'http://placehold.it/100x100' : ${editor.page.valueOf(field.fieldName)}" alt="..."></img>
 												    </a>
 												  </div>
 												  <div class="media-body">
 													<p th:id="${field.fieldName} + '_description'" th:text="${editor.page.valueOf(field.fieldName)}"></p>
 													<div th:id="${field.fieldName} + '_upload_form'" class="upload_form"></div>
-													<input th:id="${field.fieldName} + '_value'" type="hidden" th:name="${field.fieldName}"  th:value="${editor.page.valueOf(field.fieldName)}"></input>										    
 												  </div>
 												</div>
 												
