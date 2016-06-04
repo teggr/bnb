@@ -2,6 +2,10 @@ package com.robintegg.bnb.lodging;
 
 import java.net.URI;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class GoogleMap {
 
 	public static GoogleMap newInstance(String mapUrl, String imageUrl) {
@@ -15,6 +19,7 @@ public class GoogleMap {
 	GoogleMap() {
 	}
 
+	@Column(length=1000)
 	private String url;
 	private String image;
 	

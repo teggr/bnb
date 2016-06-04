@@ -1,6 +1,8 @@
 package com.robintegg.bnb.core;
 
-//@Embeddable
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class EmailAddress {
 
 	public static EmailAddress newInstance(String address) {
