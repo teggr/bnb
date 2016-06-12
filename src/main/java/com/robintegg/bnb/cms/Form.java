@@ -2,7 +2,7 @@ package com.robintegg.bnb.cms;
 
 import org.springframework.ui.ModelMap;
 
-import com.robintegg.bnb.contact.ContactForm;
+import com.robintegg.bnb.lodging.ContactForm;
 
 public class Form {
 

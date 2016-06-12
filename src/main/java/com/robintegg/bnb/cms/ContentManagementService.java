@@ -4,7 +4,7 @@ import java.util.Locale;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import com.robintegg.bnb.contact.ContactForm;
+import com.robintegg.bnb.lodging.ContactForm;
 
 public interface ContentManagementService {
 

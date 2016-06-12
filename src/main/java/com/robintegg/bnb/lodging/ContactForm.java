@@ -1,4 +1,4 @@
-package com.robintegg.bnb.contact;
+package com.robintegg.bnb.lodging;
 
 import java.util.Date;
 

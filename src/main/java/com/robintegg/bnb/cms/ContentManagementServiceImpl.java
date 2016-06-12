@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.robintegg.bnb.contact.ContactForm;
-import com.robintegg.bnb.contact.ContactService;
 import com.robintegg.bnb.locale.LocaleService;
+import com.robintegg.bnb.lodging.ContactForm;
 import com.robintegg.bnb.lodging.SingleLodgingService;
 
 @Service
@@ -22,16 +21,14 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 	private PageRepository pageRepository;
 	private LocaleService localeService;
 	private PageTemplateRepository templateRepository;
-	private ContactService contactService;
 
 	@Autowired
 	public ContentManagementServiceImpl(SingleLodgingService singleLodgingService, PageRepository pageRepository,
-			LocaleService localeService, PageTemplateRepository templateRepository, ContactService contactService) {
+			LocaleService localeService, PageTemplateRepository templateRepository) {
 		this.singleLodgingService = singleLodgingService;
 		this.pageRepository = pageRepository;
 		this.localeService = localeService;
 		this.templateRepository = templateRepository;
-		this.contactService = contactService;
 	}
 
 	@Override
@@ -78,10 +75,10 @@ public class ContentManagementServiceImpl implements ContentManagementService {
 
 	@Override
 	public ModelAndView processContactForm(ContactForm contactForm, String path, Locale locale) {
-		
+
 		// pass onto the form service
-		contactService.registerContact( contactForm );
-		
+		singleLodgingService.registerContact(contactForm);
+
 		return new ModelAndView("redirect:" + path);
 	}
 
