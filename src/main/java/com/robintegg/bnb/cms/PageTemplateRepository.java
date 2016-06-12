@@ -81,7 +81,9 @@ public class PageTemplateRepository {
 				.article(new Article.Builder("form")
 					.field(new Field( "title", FieldType.TITLE))
 					.field(new Field( "subtitle", FieldType.SUBTITLE))
-					.field(new Field("description", FieldType.TEXT)).build()
+					.field(new Field("description", FieldType.TEXT))
+					.form(Form.Type.Contact)
+					.build()
 				)
 			.build() );
 		
