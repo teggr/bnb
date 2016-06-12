@@ -33,7 +33,9 @@ public class PageTemplateRepository {
 			.section(new Section.Builder("contact")
 				.article(new Article.Builder("form")
 					.field(new Field( "title", FieldType.TITLE))
-					.field(new Field( "subtitle", FieldType.SUBTITLE)).build()
+					.field(new Field( "subtitle", FieldType.SUBTITLE))
+					.form(Form.Type.Contact)
+					.build()
 				)
 			.build() );
 		

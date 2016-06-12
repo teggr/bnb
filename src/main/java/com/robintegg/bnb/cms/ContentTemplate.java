@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.ui.ModelMap;
+
 public class ContentTemplate {
 
 	public static class Builder {
@@ -29,6 +31,10 @@ public class ContentTemplate {
 
 	public Collection<Section> getSections() {
 		return sections;
+	}
+
+	public void loadForms(ModelMap model) {
+		sections.stream().forEach( s -> s.loadForms(model) );
 	}
 
 }

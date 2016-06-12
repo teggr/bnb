@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.ui.ModelMap;
+
 public class Section extends AbstractContentNode {
 
 	public static class Builder {
@@ -46,6 +48,10 @@ public class Section extends AbstractContentNode {
 
 	public Collection<Article> getArticles() {
 		return articles;
+	}
+
+	public void loadForms(ModelMap model) {
+		articles.stream().forEach(a -> a.loadForm(model));
 	}
 
 }
