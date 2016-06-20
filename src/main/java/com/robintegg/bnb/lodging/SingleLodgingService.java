@@ -1,10 +1,13 @@
 package com.robintegg.bnb.lodging;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.robintegg.bnb.email.EmailService;
 
+@Transactional
 @Service
 public class SingleLodgingService {
 
@@ -28,6 +31,16 @@ public class SingleLodgingService {
 
 		// save form
 
+	}
+
+	public void submitForm(LodgingForm form) {
+		
+		Lodging lodging = getLodging();
+		
+		lodging.update(form);
+		
+		lodgingRepository.save(lodging);
+		
 	}
 
 }

@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
+import org.apache.commons.lang3.StringUtils;
+
 import com.robintegg.bnb.core.Address;
 import com.robintegg.bnb.core.EmailAddress;
 import com.robintegg.bnb.core.PhoneNumber;
@@ -67,6 +69,25 @@ public class Lodging extends BaseEntity {
 
 	public LodgingName getName() {
 		return name;
+	}
+	
+	public void update( LodgingForm form ) {
+		
+		if(StringUtils.isNotBlank(form.getName())) {
+			name = LodgingName.newInstance(form.getName());
+		}
+		if(StringUtils.isNotBlank(form.getLandline())) {
+			landline = PhoneNumber.newInstance(form.getLandline());
+		}
+		if(StringUtils.isNotBlank(form.getMobileNumber())) {
+			mobile = PhoneNumber.newInstance(form.getMobileNumber());
+		}
+		if(StringUtils.isNotBlank(form.getEmailAddress())) {
+			email = EmailAddress.newInstance(form.getEmailAddress());
+		}
+		address = Address.newInstance(form.getAddressLine1(), form.getAddressLine2(), form.getAddressLine3(), form.getAddressLine4(), form.getAddressLine5());
+		map = GoogleMap.newInstance(form.getMapUrl(), form.getMapImage());
+		
 	}
 
 	@Override
